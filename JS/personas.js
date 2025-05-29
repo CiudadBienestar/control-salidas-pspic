@@ -1,40 +1,43 @@
-// Datos de empleados (ejemplo)
 const empleados = [
     {
         id: 1,
-        nombre: "María García López",
+        nombre: "Maria García López",
         cedula: "1023456789",
         cargo: "Coordinadora de Proyectos",
         telefono: "6012345678"
     },
     {
         id: 2,
-        nombre: "Carlos Rodríguez Pérez",
+        nombre: "Juan Pérez Martínez",
         cedula: "9876543210",
-        cargo: "Supervisor de Campo",
+        cargo: "Promotor de Salud",
         telefono: "6023456789"
-    },
-    // Agrega más empleados según necesites
+    }
+    // Agrega más empleados según sea necesario
 ];
 
-// Llenar el dropdown de nombres
-document.addEventListener('DOMContentLoaded', function() {
+function initSelectEmpleados() {
     const selectNombre = document.getElementById('nombre');
-    
+    if (!selectNombre) return;
+
+    // Llenar dropdown
+    selectNombre.innerHTML = '<option value="">Seleccione su nombre</option>';
     empleados.forEach(empleado => {
         const option = document.createElement('option');
         option.value = empleado.id;
         option.textContent = empleado.nombre;
         selectNombre.appendChild(option);
     });
-    
-    // Autocompletar datos al seleccionar un nombre
+
+    // Autocompletar campos al seleccionar
     selectNombre.addEventListener('change', function() {
-        const empleadoSeleccionado = empleados.find(e => e.id == this.value);
-        if (empleadoSeleccionado) {
-            document.getElementById('cedula').value = empleadoSeleccionado.cedula;
-            document.getElementById('cargo').value = empleadoSeleccionado.cargo;
-            document.getElementById('telefono').value = empleadoSeleccionado.telefono;
+        const empleado = empleados.find(e => e.id == this.value);
+        if (empleado) {
+            document.getElementById('cedula').value = empleado.cedula;
+            document.getElementById('cargo').value = empleado.cargo;
+            document.getElementById('telefono').value = empleado.telefono;
         }
     });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initSelectEmpleados);
