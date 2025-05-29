@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Control de Salidas - PSPIC</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Loading overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
+    <div id="loadingOverlay" class="loading-overlay hidden">
         <div class="loading-spinner"></div>
         <p>Enviando formulario...</p>
     </div>
@@ -23,7 +23,7 @@
         <div class="notification-content">
             <div class="notification-icon">✓</div>
             <div>
-                <h3>¡Formulario enviado exitosamente!</h3>
+                <h3>Formulario enviado exitosamente!</h3>
                 <p>Los datos han sido registrados correctamente.</p>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <!-- Error notification -->
     <div id="errorNotification" class="notification error hidden">
         <div class="notification-content">
-            <div class="notification-icon">⚠</div>
+            <div class="notification-icon">✗</div>
             <div>
                 <h3>Error al enviar formulario</h3>
                 <p id="errorMessage">Ha ocurrido un error. Inténtelo nuevamente.</p>
@@ -53,10 +53,9 @@
     <main class="main-container">
         <div class="form-container" data-aos="fade-up" data-aos-delay="200">
             <form id="salidaForm" class="modern-form" novalidate>
-                
                 <!-- Información básica -->
                 <section class="form-section" data-aos="fade-up" data-aos-delay="300">
-                    <h2>📅 Información Básica</h2>
+                    <h2>Información Básica</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="fecha">Fecha</label>
@@ -73,7 +72,7 @@
 
                 <!-- Actividad -->
                 <section class="form-section" data-aos="fade-up" data-aos-delay="400">
-                    <h2>🎯 Detalles de la Actividad</h2>
+                    <h2>Detalles de la Actividad</h2>
                     <div class="form-group">
                         <label for="actividad">Actividad a Realizar</label>
                         <textarea id="actividad" name="actividad" required placeholder="Describe brevemente la actividad..."></textarea>
@@ -88,7 +87,7 @@
 
                 <!-- Horarios -->
                 <section class="form-section" data-aos="fade-up" data-aos-delay="500">
-                    <h2>⏰ Horarios</h2>
+                    <h2>Horarios</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="horaSalida">Hora de Salida</label>
@@ -116,7 +115,7 @@
 
                 <!-- Detalles adicionales -->
                 <section class="form-section" data-aos="fade-up" data-aos-delay="600">
-                    <h2>👥 Detalles Adicionales</h2>
+                    <h2>Detalles Adicionales</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="programada">¿La Salida fue Programada?</label>
@@ -144,7 +143,6 @@
                             <span class="error-message"></span>
                         </div>
                     </div>
-                    
                     <div class="form-group hidden" id="otroReunionGroup">
                         <label for="otroReunion">Especifique con quién</label>
                         <input type="text" id="otroReunion" name="otroReunion" placeholder="Detalle la persona o entidad" />
@@ -154,16 +152,14 @@
 
                 <!-- Información personal -->
                 <section class="form-section" data-aos="fade-up" data-aos-delay="700">
-                    <h2>👤 Información Personal</h2>
+                    <h2>Información Personal</h2>
                     <div class="form-group">
                         <label for="nombre">Nombre Completo</label>
                         <select id="nombre" name="nombre" required>
                             <option value="">Seleccione su nombre</option>
-                            <!-- Options will be loaded from empleados.js -->
                         </select>
                         <span class="error-message"></span>
                     </div>
-                    
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="cedula">Cédula</label>
@@ -179,10 +175,7 @@
                         </div>
                         <div class="form-group">
                             <label for="telContacto">Teléfono de Contacto o Familiar</label>
-                            <input type="tel" id="telContacto" name="telContacto" required 
-                                   pattern="[0-9]{10}" 
-                                   placeholder="3001234567"
-                                   title="Ingrese un número de 10 dígitos" />
+                            <input type="tel" id="telContacto" name="telContacto" required pattern="[0-9]{10}" placeholder="3001234567" title="Ingrese un número de 10 dígitos" />
                             <span class="error-message"></span>
                         </div>
                     </div>
@@ -190,7 +183,7 @@
 
                 <!-- Identificación y transporte -->
                 <section class="form-section" data-aos="fade-up" data-aos-delay="800">
-                    <h2>🚗 Identificación y Transporte</h2>
+                    <h2>Identificación y Transporte</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="carne">¿Porta Carné de Identificación?</label>
@@ -215,10 +208,9 @@
                             <span class="error-message"></span>
                         </div>
                     </div>
-                    
                     <div class="form-group hidden" id="placaGroup">
                         <label for="placa">Número de Placa</label>
-                        <input type="text" id="placa" name="placa" placeholder="ABC123" style="text-transform: uppercase;" />
+                        <input type="text" id="placa" name="placa" placeholder="ABC123" style="text-transform: uppercase" />
                         <span class="error-message"></span>
                     </div>
                 </section>
@@ -226,10 +218,10 @@
                 <!-- Botones -->
                 <div class="form-actions" data-aos="fade-up" data-aos-delay="900">
                     <button type="button" id="resetBtn" class="btn btn-secondary">
-                        <span>🔄</span> Limpiar Formulario
+                        <span>Limpiar Formulario</span>
                     </button>
                     <button type="submit" id="submitBtn" class="btn btn-primary">
-                        <span>📤</span> Enviar Registro
+                        <span>Enviar Registro</span>
                     </button>
                 </div>
             </form>
@@ -243,18 +235,17 @@
 
     <!-- Scripts -->
     <script>
-        // Google Apps Script URL - Replace with your actual deployment URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzszh5XxIDcZruOF3SZLvUAPGKNzj6W0ShI6W37QQEH69gzXR2U4avH1NukkHYMV0u5/exec';
-        
-        // Initialize AOS animations
+        // Google Apps Script URL - Reemplaza con tu URL real
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzszh5XxlDcZruOF3SZLVUAPGKNzj6W0ShI6W37QQEH69g2XR2U4avH1NukkHYMV0u5/exec";
+
+        // Inicializar animaciones AOS
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100
+            offset: 100,
         });
     </script>
     <script src="js/personas.js"></script>
-    <script src="js/database.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
