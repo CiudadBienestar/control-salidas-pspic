@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Salidas - PSPIC</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Enviando formulario...</p>
+    </div>
+
+    <!-- Success notification -->
+    <div id="successNotification" class="notification success hidden">
+        <div class="notification-content">
+            <div class="notification-icon">✓</div>
+            <div>
+                <h3>¡Formulario enviado exitosamente!</h3>
+                <p>Los datos han sido registrados correctamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error notification -->
+    <div id="errorNotification" class="notification error hidden">
+        <div class="notification-content">
+            <div class="notification-icon">⚠</div>
+            <div>
+                <h3>Error al enviar formulario</h3>
+                <p id="errorMessage">Ha ocurrido un error. Inténtelo nuevamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <header class="header" data-aos="fade-down">
+        <div class="header-content">
+            <img src="images/logo_inicio.png" alt="Logo PSPIC" class="logo-header" />
+            <div class="header-text">
+                <h1>CONTROL DE SALIDAS</h1>
+                <p>CONTRATISTAS PSPIC - ACCIONES COLECTIVAS</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="form-container" data-aos="fade-up" data-aos-delay="200">
+            <form id="salidaForm" class="modern-form" novalidate>
+                
+                <!-- Información básica -->
+                <section class="form-section" data-aos="fade-up" data-aos-delay="300">
+                    <h2>📅 Información Básica</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" id="fecha" name="fecha" required />
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lugarSalida">Lugar de Salida (Barrio)</label>
+                            <input type="text" id="lugarSalida" name="lugarSalida" required placeholder="Ej. Centro, La Pandiaco..." />
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Actividad -->
+                <section class="form-section" data-aos="fade-up" data-aos-delay="400">
+                    <h2>🎯 Detalles de la Actividad</h2>
+                    <div class="form-group">
+                        <label for="actividad">Actividad a Realizar</label>
+                        <textarea id="actividad" name="actividad" required placeholder="Describe brevemente la actividad..."></textarea>
+                        <span class="error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="lugarActividad">Lugar donde se Realizará la Actividad</label>
+                        <input type="text" id="lugarActividad" name="lugarActividad" required placeholder="Dirección o ubicación específica" />
+                        <span class="error-message"></span>
+                    </div>
+                </section>
+
+                <!-- Horarios -->
+                <section class="form-section" data-aos="fade-up" data-aos-delay="500">
+                    <h2>⏰ Horarios</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="horaSalida">Hora de Salida</label>
+                            <select id="horaSalida" name="horaSalida" required>
+                                <option value="">Seleccione hora</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="horaLlegada">Presunta Hora de Llegada</label>
+                            <select id="horaLlegada" name="horaLlegada" required>
+                                <option value="">Seleccione hora</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="horaRetorno">Hora de Retorno</label>
+                            <select id="horaRetorno" name="horaRetorno" required>
+                                <option value="">Seleccione hora</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Detalles adicionales -->
+                <section class="form-section" data-aos="fade-up" data-aos-delay="600">
+                    <h2>👥 Detalles Adicionales</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="programada">¿La Salida fue Programada?</label>
+                            <select id="programada" name="programada" required>
+                                <option value="">Seleccione</option>
+                                <option value="Si">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="reunionCon">¿Con Quién va a Reunirse?</label>
+                            <select id="reunionCon" name="reunionCon" required>
+                                <option value="">Seleccione</option>
+                                <option value="Comité">Comité</option>
+                                <option value="Corregidor(a)">Corregidor(a)</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Equipo de trabajo">Equipo de trabajo</option>
+                                <option value="Estudiantes">Estudiantes</option>
+                                <option value="Líder o lideresa">Líder o lideresa</option>
+                                <option value="Referente SMS">Referente SMS</option>
+                                <option value="Veedor(a)">Veedor(a)</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group hidden" id="otroReunionGroup">
+                        <label for="otroReunion">Especifique con quién</label>
+                        <input type="text" id="otroReunion" name="otroReunion" placeholder="Detalle la persona o entidad" />
+                        <span class="error-message"></span>
+                    </div>
+                </section>
+
+                <!-- Información personal -->
+                <section class="form-section" data-aos="fade-up" data-aos-delay="700">
+                    <h2>👤 Información Personal</h2>
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <select id="nombre" name="nombre" required>
+                            <option value="">Seleccione su nombre</option>
+                            <!-- Options will be loaded from empleados.js -->
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cedula">Cédula</label>
+                            <input type="text" id="cedula" name="cedula" readonly class="readonly-field" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cargo">Cargo</label>
+                            <input type="text" id="cargo" name="cargo" readonly class="readonly-field" />
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono Institucional</label>
+                            <input type="text" id="telefono" name="telefono" readonly class="readonly-field" />
+                        </div>
+                        <div class="form-group">
+                            <label for="telContacto">Teléfono de Contacto o Familiar</label>
+                            <input type="tel" id="telContacto" name="telContacto" required 
+                                   pattern="[0-9]{10}" 
+                                   placeholder="3001234567"
+                                   title="Ingrese un número de 10 dígitos" />
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Identificación y transporte -->
+                <section class="form-section" data-aos="fade-up" data-aos-delay="800">
+                    <h2>🚗 Identificación y Transporte</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="carne">¿Porta Carné de Identificación?</label>
+                            <select id="carne" name="carne" required>
+                                <option value="">Seleccione</option>
+                                <option value="Si">Sí</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="transporte">Tipo de Transporte</label>
+                            <select id="transporte" name="transporte" required>
+                                <option value="">Seleccione</option>
+                                <option value="Bicicleta">Bicicleta</option>
+                                <option value="Caminando">Caminando</option>
+                                <option value="Motocicleta">Motocicleta</option>
+                                <option value="Transporte público">Transporte público</option>
+                                <option value="Vehículo institucional">Vehículo institucional</option>
+                                <option value="Vehículo particular">Vehículo particular</option>
+                            </select>
+                            <span class="error-message"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group hidden" id="placaGroup">
+                        <label for="placa">Número de Placa</label>
+                        <input type="text" id="placa" name="placa" placeholder="ABC123" style="text-transform: uppercase;" />
+                        <span class="error-message"></span>
+                    </div>
+                </section>
+
+                <!-- Botones -->
+                <div class="form-actions" data-aos="fade-up" data-aos-delay="900">
+                    <button type="button" id="resetBtn" class="btn btn-secondary">
+                        <span>🔄</span> Limpiar Formulario
+                    </button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary">
+                        <span>📤</span> Enviar Registro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer" data-aos="fade-up">
+        <img src="images/logo_pie.png" alt="Logo PSPIC" class="logo-footer" />
+        <p>&copy; 2025 PSPIC - Sistema de Control de Salidas</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Google Apps Script URL - Replace with your actual deployment URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzszh5XxIDcZruOF3SZLvUAPGKNzj6W0ShI6W37QQEH69gzXR2U4avH1NukkHYMV0u5/exec';
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+    <script src="js/personas.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
