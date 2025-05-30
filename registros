@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control de Salidas PSPIC - Pasto Salud ESE</title>
+    <link rel="icon" href="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico" type="image/x-icon">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+      :root {
+        --primary-blue: #2563eb;
+        --primary-dark: #1e40af;
+        --secondary-blue: #dbeafe;
+        --light-blue: #eff6ff;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --gray-800: #1f2937;
+        --white: #ffffff;
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --border-radius: 8px;
+        --border-radius-lg: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, var(--light-blue) 0%, var(--gray-50) 100%);
+        min-height: 100vh;
+        color: var(--gray-700);
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: var(--shadow-lg);
+        border-bottom: 3px solid var(--secondary-blue);
+      }
+
+      header img {
+        height: 60px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+        margin: 0;
+        font-weight: 600;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      }
+
+      main {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 30px;
+      }
+
+      .controls-section {
+        background: var(--white);
+        padding: 25px;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        margin-bottom: 25px;
+        border: 1px solid var(--gray-200);
+      }
+
+      .controls-section h2 {
+        margin: 0 0 20px 0;
+        color: var(--gray-800);
+        font-size: 1.4rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .controls-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .input-group {
+        position: relative;
+        flex: 1;
+        min-width: 250px;
+      }
+
+      .input-group i {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray-600);
+        z-index: 1;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 12px 15px 12px 40px;
+        border: 2px solid var(--gray-200);
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background: var(--white);
+      }
+
+      input[type="text"]:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        transform: translateY(-1px);
+      }
+
+      select {
+        cursor: pointer;
+        padding-left: 40px;
+      }
+
+      .table-container {
+        background: var(--white);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        border: 1px solid var(--gray-200);
+      }
+
+      .table-header {
+        background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+        padding: 20px 25px;
+        border-bottom: 2px solid var(--gray-200);
+      }
+
+      .table-header h3 {
+        margin: 0;
+        color: var(--gray-800);
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+        max-height: 70vh;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: var(--white);
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--gray-200);
+        white-space: nowrap;
+      }
+
+      th {
+        background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+        font-weight: 600;
+        color: var(--gray-800);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 2px solid var(--gray-300);
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+      }
+
+      tbody tr {
+        transition: all 0.2s ease;
+      }
+
+      tbody tr:hover {
+        background: linear-gradient(135deg, var(--light-blue) 0%, rgba(239, 246, 255, 0.5) 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: rgba(249, 250, 251, 0.5);
+      }
+
+      .loading-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--gray-600);
+      }
+
+      .loading-state i {
+        font-size: 3rem;
+        color: var(--primary-blue);
+        margin-bottom: 15px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .no-data {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--gray-600);
+      }
+
+      .no-data i {
+        font-size: 3rem;
+        color: var(--gray-300);
+        margin-bottom: 15px;
+      }
+
+      footer {
+        background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+        text-align: center;
+        padding: 25px;
+        margin-top: 40px;
+        border-top: 3px solid var(--secondary-blue);
+        color: var(--gray-700);
+      }
+
+      footer img {
+        height: 35px;
+        vertical-align: middle;
+        margin-left: 10px;
+        filter: grayscale(0.2);
+      }
+
+      .stats-bar {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        background: var(--light-blue);
+        padding: 8px 15px;
+        border-radius: var(--border-radius);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--primary-dark);
+        border: 1px solid var(--secondary-blue);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        header {
+          padding: 15px 20px;
+          flex-direction: column;
+          text-align: center;
+          gap: 10px;
+        }
+
+        header h1 {
+          font-size: 1.4rem;
+        }
+
+        main {
+          padding: 20px 15px;
+        }
+
+        .controls-container {
+          flex-direction: column;
+        }
+
+        .input-group {
+          min-width: 100%;
+        }
+
+        .table-wrapper {
+          max-height: 60vh;
+        }
+
+        /* Mobile table styles */
+        table, thead, tbody, th, td, tr {
+          display: block;
+        }
+
+        thead {
+          display: none;
+        }
+
+        tbody tr {
+          margin-bottom: 15px;
+          background: var(--white);
+          border: 1px solid var(--gray-200);
+          border-radius: var(--border-radius);
+          padding: 15px;
+          box-shadow: var(--shadow-sm);
+        }
+
+        tbody tr:hover {
+          transform: none;
+          box-shadow: var(--shadow-md);
+        }
+
+        td {
+          border: none;
+          position: relative;
+          padding: 8px 0 8px 120px;
+          border-bottom: 1px solid var(--gray-100);
+          white-space: normal;
+        }
+
+        td:last-child {
+          border-bottom: none;
+        }
+
+        td::before {
+          content: attr(data-label) ": ";
+          position: absolute;
+          left: 0;
+          top: 8px;
+          font-weight: 600;
+          color: var(--gray-700);
+          width: 110px;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+
+        .stats-bar {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .controls-section {
+          padding: 20px 15px;
+        }
+
+        .table-header {
+          padding: 15px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico"
+        alt="Logo Pasto Salud"
+      />
+      <h1>Control de Salidas PSPIC – Pasto Salud ESE</h1>
+    </header>
+
+    <main>
+      <div class="controls-section">
+        <h2>
+          <i class="fas fa-search"></i>
+          Consulta de Registros
+        </h2>
+        <div class="controls-container">
+          <div class="input-group">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="buscarInput"
+              placeholder="Buscar por nombre, cédula o actividad..."
+            />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-calendar-alt"></i>
+            <select id="mesFiltro">
+              <option value="">Todos los meses</option>
+              <option value="-01-">Enero</option>
+              <option value="-02-">Febrero</option>
+              <option value="-03-">Marzo</option>
+              <option value="-04-">Abril</option>
+              <option value="-05-">Mayo</option>
+              <option value="-06-">Junio</option>
+              <option value="-07-">Julio</option>
+              <option value="-08-">Agosto</option>
+              <option value="-09-">Septiembre</option>
+              <option value="-10-">Octubre</option>
+              <option value="-11-">Noviembre</option>
+              <option value="-12-">Diciembre</option>
+            </select>
+          </div>
+        </div>
+        <div class="stats-bar" id="statsBar" style="display: none;">
+          <div class="stat-item">
+            <i class="fas fa-list"></i>
+            Total: <span id="totalRegistros">0</span>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-eye"></i>
+            Visibles: <span id="registrosVisibles">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-header">
+          <h3>
+            <i class="fas fa-table"></i>
+            Registros de Salidas
+          </h3>
+        </div>
+        <div class="table-wrapper">
+          <table id="tablaRegistros">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Perfil</th>
+                <th>Teléfono</th>
+                <th>Tel. Contacto</th>
+                <th>Carné</th>
+                <th>Actividad</th>
+                <th>Programada</th>
+                <th>Lugar Salida</th>
+                <th>Lugar Actividad</th>
+                <th>Hora Salida</th>
+                <th>Hora Llegada</th>
+                <th>Hora Retorno</th>
+                <th>Reunión Con</th>
+                <th>Otro</th>
+                <th>Transporte</th>
+                <th>Placa</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Pasto Salud ESE – Área de Salud Pública</p>
+      <img
+        src="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico"
+        alt="Logo"
+      />
+    </footer>
+
+    <script>
+      // Configuración de Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyAQEfqhQeW-ey01e16m9yXHaIsgg384iz8",
+        authDomain: "registro-salidas-1002b.firebaseapp.com",
+        databaseURL:
+          "https://registro-salidas-1002b-default-rtdb.firebaseio.com",
+        projectId: "registro-salidas-1002b",
+        storageBucket: "registro-salidas-1002b.firebasestorage.app",
+        messagingSenderId: "987187969959",
+        appId: "1:987187969959:web:03164b91bea644959c4082",
+      };
+
+      // Inicializa Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Referencia a la base de datos
+      const dbRef = firebase.database().ref("formularios/salidas");
+      const tbody = document.querySelector("#tablaRegistros tbody");
+      let filas = [];
+      let totalRegistros = 0;
+
+      // Labels para móvil
+      const labels = [
+        "Fecha", "Nombre", "Cédula", "Perfil", "Teléfono", "Tel. Contacto",
+        "Carné", "Actividad", "Programada", "Lugar Salida", "Lugar Actividad",
+        "Hora Salida", "Hora Llegada", "Hora Retorno", "Reunión Con", "Otro",
+        "Transporte", "Placa"
+      ];
+
+      // Función para mostrar estado de carga
+      function mostrarCarga() {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="18" class="loading-state">
+              <i class="fas fa-spinner"></i>
+              <div>Cargando registros...</div>
+            </td>
+          </tr>
+        `;
+      }
+
+      // Función para formatear la fecha
+      function formatearFecha(timestamp) {
+        if (!timestamp) return "";
+        const fecha = new Date(timestamp);
+        return fecha.toLocaleDateString("es-ES");
+      }
+
+      // Función para actualizar estadísticas
+      function actualizarEstadisticas() {
+        const registrosVisibles = filas.filter(fila => fila.style.display !== "none").length;
+        document.getElementById("totalRegistros").textContent = totalRegistros;
+        document.getElementById("registrosVisibles").textContent = registrosVisibles;
+        document.getElementById("statsBar").style.display = totalRegistros > 0 ? "flex" : "none";
+      }
+
+      // Cargar datos
+      function cargarDatos() {
+        mostrarCarga();
+        
+        dbRef.on(
+          "value",
+          (snapshot) => {
+            tbody.innerHTML = "";
+            filas = [];
+            totalRegistros = 0;
+
+            if (!snapshot.exists()) {
+              tbody.innerHTML = `
+                <tr>
+                  <td colspan="18" class="no-data">
+                    <i class="fas fa-inbox"></i>
+                    <div>No hay registros disponibles</div>
+                  </td>
+                </tr>
+              `;
+              actualizarEstadisticas();
+              return;
+            }
+
+            snapshot.forEach((child) => {
+              const registro = child.val();
+              const row = document.createElement("tr");
+              row.classList.add("registro");
+
+              // Campos en el mismo orden que las columnas de la tabla
+              const campos = [
+                formatearFecha(registro.fecha),
+                registro.nombre || "",
+                registro.cedula || "",
+                registro.perfil || "",
+                registro.telefono || "",
+                registro.telContacto || "",
+                registro.carne || "",
+                registro.actividad || "",
+                registro.programada || "",
+                registro.lugarSalida || "",
+                registro.lugarActividad || "",
+                registro.horaSalida || "",
+                registro.horaLlegada || "",
+                registro.horaRetorno || "",
+                registro.reunionCon || "",
+                registro.otroReunion || "",
+                registro.transporte || "",
+                registro.placa || "",
+              ];
+
+              campos.forEach((valor, index) => {
+                const td = document.createElement("td");
+                td.textContent = valor;
+                td.setAttribute("data-label", labels[index]);
+                row.appendChild(td);
+              });
+
+              tbody.appendChild(row);
+              filas.push(row);
+              totalRegistros++;
+            });
+
+            actualizarEstadisticas();
+          },
+          (error) => {
+            console.error("Error al leer datos:", error);
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="18" class="no-data">
+                  <i class="fas fa-exclamation-triangle"></i>
+                  <div>Error al cargar los datos. Verifica la conexión.</div>
+                </td>
+              </tr>
+            `;
+            actualizarEstadisticas();
+          }
+        );
+      }
+
+      // Filtrado mejorado con animaciones
+      function filtrarTabla(texto, mes) {
+        filas.forEach((fila) => {
+          const contenido = fila.textContent.toLowerCase();
+          const fecha = fila.cells[0].textContent;
+          const coincideTexto = contenido.includes(texto);
+          const coincideMes = mes === "" || fecha.includes(mes);
+          
+          if (coincideTexto && coincideMes) {
+            fila.style.display = "";
+            fila.style.animation = "fadeIn 0.3s ease";
+          } else {
+            fila.style.display = "none";
+          }
+        });
+        
+        actualizarEstadisticas();
+      }
+
+      // Event listeners
+      document
+        .getElementById("buscarInput")
+        .addEventListener("input", function () {
+          filtrarTabla(
+            this.value.toLowerCase(),
+            document.getElementById("mesFiltro").value
+          );
+        });
+
+      document
+        .getElementById("mesFiltro")
+        .addEventListener("change", function () {
+          filtrarTabla(
+            document.getElementById("buscarInput").value.toLowerCase(),
+            this.value
+          );
+        });
+
+      // Agregar animación CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Iniciar carga de datos
+      cargarDatos();
+    </script>
+  </body>
+</html>
