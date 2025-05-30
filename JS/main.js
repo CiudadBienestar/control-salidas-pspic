@@ -1,7 +1,7 @@
 // === CONFIGURACIÓN GLOBAL ===
 const CONFIG = {
   GOOGLE_SCRIPT_URL:
-    "https://script.google.com/macros/s/AKfycbyEc3gEUOpPTAm4kbOelUL-IqLT1mOAW8TpJahsafz7knyHoP7rMZMNS0ITY0krKjA/exec",
+    "https://script.google.com/macros/s/AKfycbxzH7zxgeGkJyU4b6_4lvu4byZyM5cu_sL3Wo4keNLoGqExSp6cOgeYXQ4L-uSbD60C/exec",
   HORAS: { inicio: 8, fin: 18, intervalo: 30 },
 };
 
