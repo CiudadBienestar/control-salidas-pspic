@@ -315,6 +315,39 @@
         border: 1px solid var(--secondary-blue);
       }
 
+      .btn-formulario {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+        color: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border: 2px solid transparent;
+        white-space: nowrap;
+      }
+
+      .btn-formulario:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--success);
+      }
+
+      .btn-formulario:active {
+        transform: translateY(0);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-formulario i {
+        font-size: 16px;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         header {
@@ -338,6 +371,13 @@
 
         .input-group {
           min-width: 100%;
+        }
+
+        .btn-formulario {
+          justify-content: center;
+          width: 100%;
+          padding: 15px 20px;
+          font-size: 16px;
         }
 
         .table-wrapper {
@@ -453,6 +493,12 @@
               <option value="11">Noviembre</option>
               <option value="12">Diciembre</option>
             </select>
+          </div>
+          <div class="input-group">
+            <a href="https://ciudadbienestar.github.io/control-salidas-pspic/index.html" class="btn-formulario">
+              <i class="fas fa-plus-circle"></i>
+              Nuevo Registro
+            </a>
           </div>
         </div>
         <div class="stats-bar" id="statsBar" style="display: none">
@@ -642,8 +688,8 @@
 
             // Ordenar por fechaISO (más antiguos primero)
             registros.sort((a, b) => {
-              const fechaA = b.fechaISO || b.fecha || "";
-              const fechaB = a.fechaISO || a.fecha || "";
+              const fechaA = a.fechaISO || a.fecha || "";
+              const fechaB = b.fechaISO || b.fecha || "";
               return fechaA.localeCompare(fechaB);
             });
 
