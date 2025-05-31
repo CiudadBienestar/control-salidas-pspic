@@ -23,6 +23,7 @@
         --light-blue: #eff6ff;
         --success: #10b981;
         --warning: #f59e0b;
+        --danger: #ef4444;
         --gray-50: #f9fafb;
         --gray-100: #f3f4f6;
         --gray-200: #e5e7eb;
@@ -354,6 +355,48 @@
         font-size: 16px;
       }
 
+      .btn-limpiar {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        border: 2px solid transparent;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .btn-limpiar:hover {
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark) 0%,
+          #1a3a8f 100%
+        );
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--secondary-blue);
+      }
+
+      .btn-limpiar:active {
+        transform: translateY(0);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-limpiar i {
+        font-size: 16px;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         header {
@@ -379,7 +422,8 @@
           min-width: 100%;
         }
 
-        .btn-formulario {
+        .btn-formulario,
+        .btn-limpiar {
           justify-content: center;
           width: 100%;
           padding: 15px 20px;
@@ -515,6 +559,9 @@
               <option value="11">Noviembre</option>
               <option value="12">Diciembre</option>
             </select>
+          </div>
+          <div class="input-group">
+            <button id="btnLimpiar" class="btn-limpiar">Limpiar Filtros</button>
           </div>
           <div class="input-group">
             <a
@@ -715,8 +762,8 @@
 
             // Ordenar por fechaISO (más antiguos primero)
             registros.sort((a, b) => {
-              const fechaA = a.fechaISO || a.fecha || "";
-              const fechaB = b.fechaISO || b.fecha || "";
+              const fechaA = b.fechaISO || b.fecha || "";
+              const fechaB = a.fechaISO || a.fecha || "";
               return fechaA.localeCompare(fechaB);
             });
 
@@ -798,6 +845,21 @@
         actualizarEstadisticas();
       }
 
+      // Función para limpiar todos los filtros
+      function limpiarFiltros() {
+        // Resetear controles
+        document.getElementById("buscarInput").value = "";
+        document.getElementById("mesFiltro").value = "";
+
+        // Mostrar todas las filas
+        filas.forEach((fila) => {
+          fila.style.display = "";
+          fila.style.animation = "fadeIn 0.3s ease";
+        });
+
+        actualizarEstadisticas();
+      }
+
       // Event listeners
       document
         .getElementById("buscarInput")
@@ -816,6 +878,11 @@
             this.value
           );
         });
+
+      // Evento para el botón Limpiar Filtros
+      document
+        .getElementById("btnLimpiar")
+        .addEventListener("click", limpiarFiltros);
 
       // Iniciar carga de datos
       cargarDatos();
