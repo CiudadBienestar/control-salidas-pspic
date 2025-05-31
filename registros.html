@@ -509,8 +509,10 @@
       // Función para formatear la fecha
       function formatearFecha(timestamp) {
         if (!timestamp) return "";
-        const fecha = new Date(timestamp);
-        return fecha.toLocaleDateString("es-ES");
+        // Interpretar el ISO en UTC para evitar desfase de zona horaria
+        return new Date(timestamp).toLocaleDateString("es-ES", {
+          timeZone: "UTC",
+        });
       }
 
       // Función para actualizar estadísticas
