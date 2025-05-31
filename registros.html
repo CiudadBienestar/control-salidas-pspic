@@ -11,6 +11,7 @@
     />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
@@ -397,6 +398,40 @@
         font-size: 16px;
       }
 
+      /* Botón de exportación */
+      .export-btn-container {
+        position: relative;
+        margin-top: 15px;
+        text-align: right;
+        padding: 0 15px 15px 0;
+      }
+
+      .btn-exportar {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        padding: 8px 12px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        box-shadow: var(--shadow-sm);
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-exportar:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-exportar i {
+        font-size: 14px;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         header {
@@ -488,6 +523,11 @@
 
         .stats-bar {
           justify-content: center;
+        }
+
+        .export-btn-container {
+          text-align: center;
+          padding: 15px 0;
         }
       }
 
@@ -617,6 +657,11 @@
             </thead>
             <tbody></tbody>
           </table>
+        </div>
+        <div class="export-btn-container">
+          <button id="btnExportar" class="btn-exportar">
+            <i class="fas fa-file-excel"></i> Exportar
+          </button>
         </div>
       </div>
     </main>
@@ -860,6 +905,61 @@
         actualizarEstadisticas();
       }
 
+      // Función para exportar a Excel
+      function exportarAExcel() {
+        const btnExportar = document.getElementById("btnExportar");
+        const btnOriginalHTML = btnExportar.innerHTML;
+
+        // Mostrar estado de carga en el botón
+        btnExportar.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Preparando...';
+        btnExportar.disabled = true;
+
+        setTimeout(() => {
+          try {
+            // Obtener datos visibles (filtrados)
+            const registrosVisibles = [];
+            const headers = Array.from(
+              document.querySelectorAll("#tablaRegistros thead th")
+            ).map((th) => th.textContent);
+
+            filas.forEach((fila) => {
+              if (fila.style.display !== "none") {
+                const registro = {};
+                Array.from(fila.cells).forEach((celda, index) => {
+                  registro[headers[index]] = celda.textContent;
+                });
+                registrosVisibles.push(registro);
+              }
+            });
+
+            if (registrosVisibles.length === 0) {
+              alert("No hay datos para exportar");
+              return;
+            }
+
+            // Crear libro de Excel
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.json_to_sheet(registrosVisibles);
+            XLSX.utils.book_append_sheet(wb, ws, "Salidas PSPIC");
+
+            // Generar fecha para el nombre del archivo
+            const hoy = new Date();
+            const fechaStr = hoy.toISOString().split("T")[0];
+
+            // Descargar archivo
+            XLSX.writeFile(wb, `Salidas_PSPIC_${fechaStr}.xlsx`);
+          } catch (error) {
+            console.error("Error al exportar:", error);
+            alert("Ocurrió un error al generar el archivo Excel");
+          } finally {
+            // Restaurar botón
+            btnExportar.innerHTML = btnOriginalHTML;
+            btnExportar.disabled = false;
+          }
+        }, 100);
+      }
+
       // Event listeners
       document
         .getElementById("buscarInput")
@@ -883,6 +983,11 @@
       document
         .getElementById("btnLimpiar")
         .addEventListener("click", limpiarFiltros);
+
+      // Evento para el botón Exportar
+      document
+        .getElementById("btnExportar")
+        .addEventListener("click", exportarAExcel);
 
       // Iniciar carga de datos
       cargarDatos();
