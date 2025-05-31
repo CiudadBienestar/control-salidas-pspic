@@ -262,8 +262,14 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .no-data {
@@ -449,6 +455,22 @@
         .table-header {
           padding: 15px 20px;
         }
+        .btn-formulario {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem; /* espacio entre icono y texto */
+          padding: 0.5rem 1rem; /* ajusta al gusto */
+          background: var(--primary-blue);
+          color: white;
+          border-radius: var(--border-radius);
+          text-decoration: none;
+          font-weight: 500;
+          transition: background 0.2s;
+        }
+
+        .btn-formulario:hover {
+          background: var(--primary-dark);
+        }
       }
     </style>
   </head>
@@ -495,8 +517,10 @@
             </select>
           </div>
           <div class="input-group">
-            <a href="https://ciudadbienestar.github.io/control-salidas-pspic/index.html" class="btn-formulario">
-              <i class="fas fa-plus-circle"></i>
+            <a
+              href="https://ciudadbienestar.github.io/control-salidas-pspic/index.html"
+              class="btn-formulario"
+            >
               Nuevo Registro
             </a>
           </div>
@@ -551,7 +575,10 @@
     </main>
 
     <footer>
-      <p>© 2025 Pasto Salud ESE – Plan de Salud Pública de Intervenciones Colectivas</p>
+      <p>
+        © 2025 Pasto Salud ESE – Plan de Salud Pública de Intervenciones
+        Colectivas
+      </p>
       <img
         src="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico"
         alt="Logo"
@@ -617,23 +644,23 @@
       // Función mejorada para formatear la fecha
       function formatearFecha(fecha) {
         if (!fecha) return "";
-        
+
         // Si es formato ISO (YYYY-MM-DD)
         if (typeof fecha === "string" && fecha.includes("-")) {
           const [year, month, day] = fecha.split("-");
           return `${day}/${month}/${year}`;
         }
-        
+
         // Si es timestamp de Firebase
         try {
           const dateObj = new Date(fecha);
           if (isNaN(dateObj.getTime())) return "";
-          
+
           return dateObj.toLocaleDateString("es-ES", {
             timeZone: "UTC",
             day: "2-digit",
             month: "2-digit",
-            year: "numeric"
+            year: "numeric",
           });
         } catch (e) {
           console.error("Error al formatear fecha:", e);
@@ -682,7 +709,7 @@
             snapshot.forEach((child) => {
               registros.push({
                 key: child.key,
-                ...child.val()
+                ...child.val(),
               });
             });
 
