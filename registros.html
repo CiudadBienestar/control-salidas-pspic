@@ -261,6 +261,11 @@
         }
       }
 
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
       .no-data {
         text-align: center;
         padding: 60px 20px;
@@ -563,13 +568,31 @@
         `;
       }
 
-      // Función para formatear la fecha
-      function formatearFecha(timestamp) {
-        if (!timestamp) return "";
-        // Interpretar el ISO en UTC para evitar desfase de zona horaria
-        return new Date(timestamp).toLocaleDateString("es-ES", {
-          timeZone: "UTC",
-        });
+      // Función mejorada para formatear la fecha
+      function formatearFecha(fecha) {
+        if (!fecha) return "";
+        
+        // Si es formato ISO (YYYY-MM-DD)
+        if (typeof fecha === "string" && fecha.includes("-")) {
+          const [year, month, day] = fecha.split("-");
+          return `${day}/${month}/${year}`;
+        }
+        
+        // Si es timestamp de Firebase
+        try {
+          const dateObj = new Date(fecha);
+          if (isNaN(dateObj.getTime())) return "";
+          
+          return dateObj.toLocaleDateString("es-ES", {
+            timeZone: "UTC",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+          });
+        } catch (e) {
+          console.error("Error al formatear fecha:", e);
+          return "";
+        }
       }
 
       // Función para actualizar estadísticas
@@ -584,13 +607,13 @@
           totalRegistros > 0 ? "flex" : "none";
       }
 
-      // Cargar datos
+      // Cargar datos ordenados por fecha (más antiguos primero)
       function cargarDatos() {
         mostrarCarga();
 
-        dbRef.on(
-          "value",
-          (snapshot) => {
+        dbRef
+          .once("value")
+          .then((snapshot) => {
             tbody.innerHTML = "";
             filas = [];
             totalRegistros = 0;
@@ -608,14 +631,30 @@
               return;
             }
 
+            // Convertir snapshot a array para poder ordenar
+            const registros = [];
             snapshot.forEach((child) => {
-              const registro = child.val();
+              registros.push({
+                key: child.key,
+                ...child.val()
+              });
+            });
+
+            // Ordenar por fechaISO (más antiguos primero)
+            registros.sort((a, b) => {
+              const fechaA = b.fechaISO || b.fecha || "";
+              const fechaB = a.fechaISO || a.fecha || "";
+              return fechaA.localeCompare(fechaB);
+            });
+
+            // Crear filas en el orden correcto
+            registros.forEach((registro) => {
               const row = document.createElement("tr");
               row.classList.add("registro");
 
               // Campos en el mismo orden que las columnas de la tabla
               const campos = [
-                formatearFecha(registro.fecha),
+                formatearFecha(registro.fechaISO || registro.fecha),
                 registro.nombre || "",
                 registro.cedula || "",
                 registro.perfil || "",
@@ -648,8 +687,8 @@
             });
 
             actualizarEstadisticas();
-          },
-          (error) => {
+          })
+          .catch((error) => {
             console.error("Error al leer datos:", error);
             tbody.innerHTML = `
               <tr>
@@ -660,8 +699,7 @@
               </tr>
             `;
             actualizarEstadisticas();
-          }
-        );
+          });
       }
 
       // Filtrado mejorado con animaciones
@@ -673,7 +711,7 @@
 
           // extraer mes de la fecha mostrada
           const partes = fecha.split("/");
-          const mesFila = partes[1].padStart(2, "0"); // "05"
+          const mesFila = partes[1] ? partes[1].padStart(2, "0") : "";
           const coincideMes = mes === "" || mesFila === mes;
 
           if (coincideTexto && coincideMes) {
@@ -705,16 +743,6 @@
             this.value
           );
         });
-
-      // Agregar animación CSS
-      const style = document.createElement("style");
-      style.textContent = `
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `;
-      document.head.appendChild(style);
 
       // Iniciar carga de datos
       cargarDatos();
