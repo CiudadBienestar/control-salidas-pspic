@@ -4,10 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Control de Salidas PSPIC - Pasto Salud ESE</title>
-    <link rel="icon" href="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico" type="image/x-icon">
+    <link
+      rel="icon"
+      href="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico"
+      type="image/x-icon"
+    />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --primary-blue: #2563eb;
@@ -25,8 +32,10 @@
         --gray-800: #1f2937;
         --white: #ffffff;
         --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
         --border-radius: 8px;
         --border-radius-lg: 12px;
       }
@@ -36,16 +45,25 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background: linear-gradient(135deg, var(--light-blue) 0%, var(--gray-50) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--light-blue) 0%,
+          var(--gray-50) 100%
+        );
         min-height: 100vh;
         color: var(--gray-700);
       }
 
       header {
-        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue) 0%,
+          var(--primary-dark) 100%
+        );
         color: white;
         padding: 20px 30px;
         display: flex;
@@ -57,14 +75,14 @@
 
       header img {
         height: 60px;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
       }
 
       header h1 {
         font-size: 1.8rem;
         margin: 0;
         font-weight: 600;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
 
       main {
@@ -147,7 +165,11 @@
       }
 
       .table-header {
-        background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--gray-50) 0%,
+          var(--gray-100) 100%
+        );
         padding: 20px 25px;
         border-bottom: 2px solid var(--gray-200);
       }
@@ -183,7 +205,11 @@
       }
 
       th {
-        background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--gray-50) 100%
+        );
         font-weight: 600;
         color: var(--gray-800);
         position: sticky;
@@ -200,9 +226,13 @@
       }
 
       tbody tr:hover {
-        background: linear-gradient(135deg, var(--light-blue) 0%, rgba(239, 246, 255, 0.5) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--light-blue) 0%,
+          rgba(239, 246, 255, 0.5) 100%
+        );
         transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       tbody tr:nth-child(even) {
@@ -223,8 +253,12 @@
       }
 
       @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .no-data {
@@ -240,7 +274,11 @@
       }
 
       footer {
-        background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--gray-50) 100%
+        );
         text-align: center;
         padding: 25px;
         margin-top: 40px;
@@ -302,7 +340,12 @@
         }
 
         /* Mobile table styles */
-        table, thead, tbody, th, td, tr {
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
           display: block;
         }
 
@@ -392,22 +435,22 @@
             <i class="fas fa-calendar-alt"></i>
             <select id="mesFiltro">
               <option value="">Todos los meses</option>
-              <option value="-01-">Enero</option>
-              <option value="-02-">Febrero</option>
-              <option value="-03-">Marzo</option>
-              <option value="-04-">Abril</option>
-              <option value="-05-">Mayo</option>
-              <option value="-06-">Junio</option>
-              <option value="-07-">Julio</option>
-              <option value="-08-">Agosto</option>
-              <option value="-09-">Septiembre</option>
-              <option value="-10-">Octubre</option>
-              <option value="-11-">Noviembre</option>
-              <option value="-12-">Diciembre</option>
+              <option value="01">Enero</option>
+              <option value="02">Febrero</option>
+              <option value="03">Marzo</option>
+              <option value="04">Abril</option>
+              <option value="05">Mayo</option>
+              <option value="06">Junio</option>
+              <option value="07">Julio</option>
+              <option value="08">Agosto</option>
+              <option value="09">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
             </select>
           </div>
         </div>
-        <div class="stats-bar" id="statsBar" style="display: none;">
+        <div class="stats-bar" id="statsBar" style="display: none">
           <div class="stat-item">
             <i class="fas fa-list"></i>
             Total: <span id="totalRegistros">0</span>
@@ -488,10 +531,24 @@
 
       // Labels para móvil
       const labels = [
-        "Fecha", "Nombre", "Cédula", "Perfil", "Teléfono", "Tel. Contacto",
-        "Carné", "Actividad", "Programada", "Lugar Salida", "Lugar Actividad",
-        "Hora Salida", "Hora Llegada", "Hora Retorno", "Reunión Con", "Otro",
-        "Transporte", "Placa"
+        "Fecha",
+        "Nombre",
+        "Cédula",
+        "Perfil",
+        "Teléfono",
+        "Tel. Contacto",
+        "Carné",
+        "Actividad",
+        "Programada",
+        "Lugar Salida",
+        "Lugar Actividad",
+        "Hora Salida",
+        "Hora Llegada",
+        "Hora Retorno",
+        "Reunión Con",
+        "Otro",
+        "Transporte",
+        "Placa",
       ];
 
       // Función para mostrar estado de carga
@@ -517,16 +574,20 @@
 
       // Función para actualizar estadísticas
       function actualizarEstadisticas() {
-        const registrosVisibles = filas.filter(fila => fila.style.display !== "none").length;
+        const registrosVisibles = filas.filter(
+          (fila) => fila.style.display !== "none"
+        ).length;
         document.getElementById("totalRegistros").textContent = totalRegistros;
-        document.getElementById("registrosVisibles").textContent = registrosVisibles;
-        document.getElementById("statsBar").style.display = totalRegistros > 0 ? "flex" : "none";
+        document.getElementById("registrosVisibles").textContent =
+          registrosVisibles;
+        document.getElementById("statsBar").style.display =
+          totalRegistros > 0 ? "flex" : "none";
       }
 
       // Cargar datos
       function cargarDatos() {
         mostrarCarga();
-        
+
         dbRef.on(
           "value",
           (snapshot) => {
@@ -607,10 +668,14 @@
       function filtrarTabla(texto, mes) {
         filas.forEach((fila) => {
           const contenido = fila.textContent.toLowerCase();
-          const fecha = fila.cells[0].textContent;
+          const fecha = fila.cells[0].textContent; // "31/05/2025"
           const coincideTexto = contenido.includes(texto);
-          const coincideMes = mes === "" || fecha.includes(mes);
-          
+
+          // extraer mes de la fecha mostrada
+          const partes = fecha.split("/");
+          const mesFila = partes[1].padStart(2, "0"); // "05"
+          const coincideMes = mes === "" || mesFila === mes;
+
           if (coincideTexto && coincideMes) {
             fila.style.display = "";
             fila.style.animation = "fadeIn 0.3s ease";
@@ -618,7 +683,7 @@
             fila.style.display = "none";
           }
         });
-        
+
         actualizarEstadisticas();
       }
 
@@ -642,7 +707,7 @@
         });
 
       // Agregar animación CSS
-      const style = document.createElement('style');
+      const style = document.createElement("style");
       style.textContent = `
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }
