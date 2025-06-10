@@ -61,7 +61,7 @@ const personas = [
   { nombre: "Veronica Roxana Moran Villota", cedula: "1.085.296.353", perfil: "Auxliar de Enfermería", telefono: "3164339430" },
   { nombre: "Ximena Andrea Ordoñez Ordoñez", cedula: "1.085.247.120", perfil: "Técnico Lenguaje de Señas", telefono: "3217780016" },
   { nombre: "Yanira Del Rosario López Basante", cedula: "36.757.298", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3153737369" },
-  { nombre: "Yemmi Andrea Díaz Cuarán", cedula: "36.759.324", perfil: "Axiliar de Salud Oral", telefono: "3183284003" },
+  { nombre: "Yemmi Andrea Díaz Cuarán", cedula: "36.759.324", perfil: "Auxiliar de Salud Oral", telefono: "3183284003" },
   { nombre: "Yesica Stefania Jurado Martínez", cedula: "1.085.319.775", perfil: "Psicóloga", telefono: "3209930297" },
   { nombre: "Yoli Elizabeth Galvis Barrera", cedula: "1.085.303.056", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3213823317" },
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
