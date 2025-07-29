@@ -33,7 +33,7 @@ const personas = [
   { nombre: "Gina Elizabeth López Obando", cedula: "27.093.909", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3177271783" },
   { nombre: "Guissett Fernanda Jiménez Romero", cedula: "1.085.270.920", perfil: "Socióloga", telefono: "3155761683" },
   { nombre: "Jenhifer Alejandra Basante Mora", cedula: "1.085.312.866", perfil: "Comunicadora Social", telefono: "3113018578" },
-  { nombre: "Jessica Stefanny Franco Eraso", cedula: "1.085.272.491", perfil: "Enfermera", telefono: "3215538024" },
+  { nombre: "Ginna Marcela Farinango Riascos", cedula: "1.085.276.680", perfil: "Enfermera", telefono: "3176148223" },
   { nombre: "John Edisson Bravo Botina", cedula: "1.085.279.124", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3015332010" },
   { nombre: "Jorge Alfonso Álava Jarrín", cedula: "98.137.664", perfil: "Líder Grupos Etnicos", telefono: "3155271677" },
   { nombre: "José David Usama Taticuan", cedula: "1.085.275.452", perfil: "Sociólogo", telefono: "3045989573" },
