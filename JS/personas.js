@@ -33,7 +33,8 @@ const personas = [
   { nombre: "Gina Elizabeth López Obando", cedula: "27.093.909", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3177271783" },
   { nombre: "Ginna Marcela Farinango Riascos", cedula: "1.085.276.680", perfil: "Enfermera", telefono: "3176148223" },
   { nombre: "Guissett Fernanda Jiménez Romero", cedula: "1.085.270.920", perfil: "Socióloga", telefono: "3155761683" },
-  { nombre: "Jenhifer Alejandra Basante Mora", cedula: "1.085.312.866", perfil: "Comunicadora Social", telefono: "3113018578" },  
+  { nombre: "Jenhifer Alejandra Basante Mora", cedula: "1.085.312.866", perfil: "Comunicadora Social", telefono: "3113018578" },
+  { nombre: "Johana Paola Martínez Guerrero", cedula: "1.085.301.176", perfil: "Abogada", telefono: "3128212093" },  
   { nombre: "John Edisson Bravo Botina", cedula: "1.085.279.124", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3015332010" },
   { nombre: "Jorge Alfonso Álava Jarrín", cedula: "98.137.664", perfil: "Líder Grupos Etnicos", telefono: "3155271677" },
   { nombre: "José David Usama Taticuan", cedula: "1.085.275.452", perfil: "Sociólogo", telefono: "3045989573" },
@@ -64,9 +65,11 @@ const personas = [
   { nombre: "Veronica Roxana Moran Villota", cedula: "1.085.296.353", perfil: "Auxliar de Enfermería", telefono: "3164339430" },
   { nombre: "Ximena Andrea Ordoñez Ordoñez", cedula: "1.085.247.120", perfil: "Técnico Lenguaje de Señas", telefono: "3217780016" },
   { nombre: "Yanira Del Rosario López Basante", cedula: "36.757.298", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3153737369" },
+  { nombre: "Yana Stefhania Carlosama Ruales", cedula: "1.085.257.630", perfil: "Socióloga", telefono: "3136601924" },
   { nombre: "Yemmi Andrea Díaz Cuarán", cedula: "36.759.324", perfil: "Auxiliar de Salud Oral", telefono: "3183284003" },
   { nombre: "Yesica Stefania Jurado Martínez", cedula: "1.085.319.775", perfil: "Psicóloga", telefono: "3209930297" },
   { nombre: "Yoli Elizabeth Galvis Barrera", cedula: "1.085.303.056", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3213823317" },
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ];
+
