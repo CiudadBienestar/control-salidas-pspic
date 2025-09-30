@@ -33,6 +33,7 @@ const personas = [
   { nombre: "Gina Elizabeth López Obando", cedula: "27.093.909", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3177271783" },
   { nombre: "Ginna Marcela Farinango Riascos", cedula: "1.085.276.680", perfil: "Enfermera", telefono: "3176148223" },
   { nombre: "Guissett Fernanda Jiménez Romero", cedula: "1.085.270.920", perfil: "Socióloga", telefono: "3155761683" },
+  { nombre: "Jeferson Fabián Salalzar Duarte", cedula: "1.085.339.919", perfil: "Sociólogo", telefono: "3164054809" },
   { nombre: "Jenhifer Alejandra Basante Mora", cedula: "1.085.312.866", perfil: "Comunicadora Social", telefono: "3113018578" },
   { nombre: "Johana Paola Martínez Guerrero", cedula: "1.085.301.176", perfil: "Abogada", telefono: "3128212093" },  
   { nombre: "John Edisson Bravo Botina", cedula: "1.085.279.124", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3015332010" },
@@ -46,6 +47,7 @@ const personas = [
   { nombre: "Legny Molina Ordóñez", cedula: "37.083.634", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3178101981" },
   { nombre: "Leydi Vanessa Palacios Delgado", cedula: "1.085.336.859", perfil: "Psicóloga", telefono: "3106867972" },
   { nombre: "Luis Sebastián Yepes Caicedo", cedula: "1.085.285.463", perfil: "Comunicador Social", telefono: "3126865216" },
+  { nombre: "Luz Marisel Campaña Muriel", cedula: "30746862", perfil: "Socióloga", telefono: "3153103465" },
   { nombre: "Marco Andrés Tovar Mejía", cedula: "13.071.542", perfil: "Sociólogo", telefono: "3146005128" },
   { nombre: "María Fernanda Martinez Arellano", cedula: "1.085.321.868", perfil: "Licenciada en Artes Visuales", telefono: "3164852323" },
   { nombre: "María Fernanda Ortega Sarria", cedula: "1.085.245.666", perfil: "Trabajadora Social", telefono: "3136624129" },
@@ -72,4 +74,5 @@ const personas = [
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ];
+
 
