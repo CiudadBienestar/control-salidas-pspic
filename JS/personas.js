@@ -45,7 +45,8 @@ const personas = [
   { nombre: "Katherine Andrea Torres Gomez", cedula: "1.085.275.802", perfil: "Trabajadora Social", telefono: "3022561729" },
   { nombre: "Laura Fernanda Pulzara Villota", cedula: "1.193.405.577", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3126594907" },
   { nombre: "Legny Molina Ordóñez", cedula: "37.083.634", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3178101981" },
-  { nombre: "Leydi Vanessa Palacios Delgado", cedula: "1.085.336.859", perfil: "Psicóloga", telefono: "3106867972" },
+  { nombre: "Lesly Nathalia Maigual Jurado", cedula: "1.085.337.465", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3145141364" }, 
+  { nombre: "Leydi Vanessa Palacios Delgado", cedula: "1.085.336.859", perfil: "Psicóloga", telefono: "3106867972" },  
   { nombre: "Luis Sebastián Yepes Caicedo", cedula: "1.085.285.463", perfil: "Comunicador Social", telefono: "3126865216" },
   { nombre: "Luz Marisel Campaña Muriel", cedula: "30.746.862", perfil: "Socióloga", telefono: "3153103465" },
   { nombre: "Marco Andrés Tovar Mejía", cedula: "13.071.542", perfil: "Sociólogo", telefono: "3146005128" },
@@ -74,6 +75,7 @@ const personas = [
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ];
+
 
 
 
