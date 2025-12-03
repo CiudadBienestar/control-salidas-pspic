@@ -1,4 +1,4 @@
-[
+const personas = [
   { nombre: "Adriana Guicella Rivas Burbano", cedula: "59.311.558", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3242654545" },
   { nombre: "Adriana Sofía Isandara Nupan", cedula: "1.193.265.360", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3186479077" },
   { nombre: "Alex Ferney Maigual Botina", cedula: "5.207.190", perfil: "Comunicadora Social", telefono: "3162838654" },
@@ -96,3 +96,4 @@
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ]
+
