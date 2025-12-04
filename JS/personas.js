@@ -12,7 +12,7 @@ const personas = [
   { nombre: "Angie Cecilia Ramirez Ortiz", cedula: "1.087.210.899", perfil: "Socióloga", telefono: "3188810821" },
   { nombre: "Angie Sofía Enriquez Pérez", cedula: "1.085.341.162", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3185751468" },
   { nombre: "Armando David Gustin Obando", cedula: "1.193.522.335", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3167835421" },
-  { nombre: "Aura Maria Meneses Zamora", cedula: "1.113.677.357", perfil: "Par comunitario", telefono: "3164997873" },
+  { nombre: "Aura Maria Meneses Zamora", cedula: "1.113.677.357", perfil: "Diseñadora Gráfica - Par comunitario", telefono: "3164997873" },
   { nombre: "Aylin Ibeth Cuastumal Rodriguez", cedula: "1.193.029.598", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3162490189" },
   { nombre: "Bernardita Lucia Vela Aguilera", cedula: "30.735.749", perfil: "Odontóloga", telefono: "3206037510" },
   { nombre: "Carol Viviana Rodríguez Cárdenas", cedula: "59.314.601", perfil: "Auxliar de Enfermería", telefono: "3158667303" },
@@ -96,5 +96,6 @@ const personas = [
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ]
+
 
 
