@@ -30,6 +30,7 @@ const personas = [
   { nombre: "Diego Alejandro Cordoba Rosero", cedula: "1.085.287.990", perfil: "Diseñador Gráfico", telefono: "3137451522" },
   { nombre: "Diego Andrés García Portilla", cedula: "1.233.194.302", perfil: "Administrador en Servicios de Salud", telefono: "3108779883" },
   { nombre: "Diego Armando Benavides Obando", cedula: "1.085.310.456", perfil: "Licenciada en Artes Visuales", telefono: "3127833153" },
+  { nombre: "Diviana Alexandra Rodríguez Mora, cedula: "1.085.318.356", perfil: "Tecnologa en Promoción de Salud", telefono: "3105995860" },
   { nombre: "Elizabeth Natalia Huertas Moreno", cedula: "36.745.932", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3113786634" },
   { nombre: "Enrique Armando Cabrera Jurado", cedula: "12.981.279", perfil: "Licenciado en Artes Visuales", telefono: "3002756212" },
   { nombre: "Estefany Sofía Munares Ceballos", cedula: "1.193.271.904", perfil: "Admnistradora en Servicios de Salud", telefono: "3157023947" },
@@ -96,6 +97,7 @@ const personas = [
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ]
+
 
 
 
