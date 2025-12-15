@@ -69,6 +69,7 @@ const personas = [
   { nombre: "María Guadalupe Gelpud Carpio", cedula: "1.004.410.787", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3015426949" },
   { nombre: "María Paula Pachajoa", cedula: "1.085.339.053", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3012016616" },
   { nombre: "Maritza Mercedes Sarralde Pereira", cedula: "59.312.209", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3183979935" },
+  { nombre: "Margareth Lilian Casanova Donoso", cedula: "1.085.252.414", perfil: "Enfermera", telefono: "3106698631" },
   { nombre: "Mary Yesenia Solarte Romo", cedula: "1.085.318.412", perfil: "Comunicadora Social", telefono: "3104748964" },
   { nombre: "Mayra Alejandra Cabrera Quintana", cedula: "1.085.336.581", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3186236455" },
   { nombre: "Nathalia Marcela Vallejo Erazo", cedula: "1.085.346.637", perfil: "Par comunitaria - Psicóloga", telefono: "3043053506" },
@@ -91,4 +92,5 @@ const personas = [
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ];
+
 
