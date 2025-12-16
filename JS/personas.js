@@ -10,6 +10,7 @@ const personas = [
   { nombre: "Ángela Gabriela Medina Trejo", cedula: "1.085.272.953", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3215285375" },
   { nombre: "Ángela Jennifer Vallejo Palacios", cedula: "1.085.254.615", perfil: "Administradora en Salud Ocupacional", telefono: "3173609139" },
   { nombre: "Ángela Mabel Rodríguez Timarán", cedula: "36.750.556", perfil: "Profesional con Especialización en SST", telefono: "36750556" },
+  { nombre: "Ángela Sofía Betancourt Herrera", cedula: "1.004.233.656", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3152972328" },
   { nombre: "Angie Cecilia Ramírez Ortiz", cedula: "1.087.210.899", perfil: "Socióloga", telefono: "3188810821" },
   { nombre: "Angie Sofía Enríquez Pérez", cedula: "1.085.341.162", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3185751468" },
   { nombre: "Armando David Gustin Obando", cedula: "1.193.522.335", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3167835421" },
@@ -60,6 +61,7 @@ const personas = [
   { nombre: "Lesly Fabiana Romero Cabrera", cedula: "1.004.235.951", perfil: "Tecnóloga en Promoción de la Salud", telefono: "3166157750" },
   { nombre: "Lesly Nathalia Maigual Jurado", cedula: "1.085.337.465", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3145141364" },
   { nombre: "Leydi Vanessa Palacios Delgado", cedula: "1.085.336.859", perfil: "Psicóloga", telefono: "3106867972" },
+  { nombre: "Lina María Revelo Ruiz", cedula: "1.081.052.543", perfil: "", telefono: "3175257460" },
   { nombre: "Luis Sebastián Yepes Caicedo", cedula: "1.085.285.463", perfil: "Comunicador Social", telefono: "3126865216" },
   { nombre: "Luz Marina Benavides Bastidas", cedula: "1.085.330.237", perfil: "Tecnólogo(a) en Promoción de la Salud", telefono: "3135919153" },
   { nombre: "Luz Marisel Campaña Muriel", cedula: "30.746.862", perfil: "Socióloga", telefono: "3153103465" },
@@ -92,5 +94,6 @@ const personas = [
   { nombre: "Yury Alexandra Bravo Garcia", cedula: "1.085.328.611", perfil: "Psicóloga", telefono: "3178944330" },
   { nombre: "Zulma Victoria Zambrano Segura", cedula: "27.359.486", perfil: "Geógrafa", telefono: "3012502691" }
 ];
+
 
 
