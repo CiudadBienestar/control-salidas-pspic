@@ -1,33 +1,30 @@
-// main.js
-
 document.addEventListener("DOMContentLoaded", () => {
-  const nombreSelect = document.getElementById("nombre");
-  const cedulaInput = document.getElementById("cedula");
-  const perfilInput = document.getElementById("perfil");
-  const telefonoInput = document.getElementById("telefono");
-  const reunionConSelect = document.getElementById("reunionCon");
-  const otroReunionGroup = document.getElementById("otroReunionGroup");
-  const transporteSelect = document.getElementById("transporte");
-  const placaGroup = document.getElementById("placaGroup");
 
-  const horaSalidaSelect = document.getElementById("horaSalida");
+  // ------------- Referencias al DOM -------------
+  const cedulaInput       = document.getElementById("cedula");
+  const perfilInput       = document.getElementById("perfil");
+  const telefonoInput     = document.getElementById("telefono");
+  const reunionConSelect  = document.getElementById("reunionCon");
+  const otroReunionGroup  = document.getElementById("otroReunionGroup");
+  const transporteSelect  = document.getElementById("transporte");
+  const placaGroup        = document.getElementById("placaGroup");
+
+  const horaSalidaSelect  = document.getElementById("horaSalida");
   const horaLlegadaSelect = document.getElementById("horaLlegada");
   const horaRetornoSelect = document.getElementById("horaRetorno");
 
-  const form = document.getElementById("salidaForm");
-  const loadingOverlay = document.getElementById("loadingOverlay");
-  const successNotification = document.getElementById("successNotification");
-  const errorNotification = document.getElementById("errorNotification");
-  const errorMessage = document.getElementById("errorMessage");
+  const form                  = document.getElementById("salidaForm");
+  const loadingOverlay        = document.getElementById("loadingOverlay");
+  const successNotification   = document.getElementById("successNotification");
+  const errorNotification     = document.getElementById("errorNotification");
+  const errorMessage          = document.getElementById("errorMessage");
 
-  // ------------- Población de select horas -------------
+  // ------------- Población de selects de horas -------------
   function cargarHoras(selectElement) {
     for (let h = 6; h <= 22; h++) {
-      // horas de 6am a 10pm
       for (let m = 0; m < 60; m += 15) {
         const date = new Date();
-        date.setHours(h);
-        date.setMinutes(m);
+        date.setHours(h, m, 0, 0);
 
         const horaAMPM = date.toLocaleTimeString("en-US", {
           hour: "numeric",
@@ -35,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
           hour12: true,
         });
 
-        const value = date.toTimeString().slice(0, 5); // Formato HH:MM en 24h como valor
+        const value = date.toTimeString().slice(0, 5);
         const option = document.createElement("option");
         option.value = value;
         option.textContent = horaAMPM;
@@ -48,38 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarHoras(horaLlegadaSelect);
   cargarHoras(horaRetornoSelect);
 
-  // ------------- Población del select nombre con personas -------------
-  function cargarNombres() {
-    personas.forEach((persona) => {
-      const option = document.createElement("option");
-      option.value = persona.nombre;
-      option.textContent = persona.nombre;
-      nombreSelect.appendChild(option);
-    });
-  }
-  cargarNombres();
-
-  // ------------- Al cambiar nombre, mostrar datos asociados -------------
-  nombreSelect.addEventListener("change", () => {
-    const seleccionado = personas.find((p) => p.nombre === nombreSelect.value);
-    if (seleccionado) {
-      cedulaInput.value = seleccionado.cedula;
-      perfilInput.value = seleccionado.perfil;
-      telefonoInput.value = seleccionado.telefono;
-    } else {
-      cedulaInput.value = "";
-      perfilInput.value = "";
-      telefonoInput.value = "";
-    }
-  });
-
-  // ------------- Mostrar/ocultar campo "Especifique con quién" -------------
+  // ------------- Mostrar/ocultar "Especifique con quién" -------------
   reunionConSelect.addEventListener("change", () => {
     if (reunionConSelect.value === "Otro") {
       otroReunionGroup.classList.remove("hidden");
-      document
-        .getElementById("otroReunion")
-        .setAttribute("required", "required");
+      document.getElementById("otroReunion").setAttribute("required", "required");
     } else {
       otroReunionGroup.classList.add("hidden");
       document.getElementById("otroReunion").removeAttribute("required");
@@ -87,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ------------- Mostrar/ocultar campo placa según transporte -------------
+  // ------------- Mostrar/ocultar campo placa -------------
   transporteSelect.addEventListener("change", () => {
     const valor = transporteSelect.value;
     if (valor === "Motocicleta" || valor === "Vehículo particular") {
@@ -103,15 +73,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------- Botón limpiar formulario -------------
   document.getElementById("resetBtn").addEventListener("click", () => {
     form.reset();
-    cedulaInput.value = "";
-    perfilInput.value = "";
+
+    // Limpiar campos readonly
+    cedulaInput.value   = "";
+    perfilInput.value   = "";
     telefonoInput.value = "";
+
+    // Limpiar searchable select
+    const searchInput = document.getElementById("nombreSearch");
+    const hiddenInput = document.getElementById("nombre");
+    if (searchInput) {
+      searchInput.value = "";
+      searchInput.classList.remove("has-value", "input-error");
+    }
+    if (hiddenInput) hiddenInput.value = "";
+
+    // Ocultar grupos opcionales
     otroReunionGroup.classList.add("hidden");
     placaGroup.classList.add("hidden");
+
     hideNotification();
   });
 
-  // ------------- Mostrar y ocultar notificaciones -------------
+  // ------------- Notificaciones -------------
   function hideNotification() {
     loadingOverlay.classList.add("hidden");
     successNotification.classList.add("hidden");
@@ -126,18 +110,28 @@ document.addEventListener("DOMContentLoaded", () => {
   function showSuccess() {
     hideNotification();
     successNotification.classList.remove("hidden");
+    setTimeout(() => successNotification.classList.add("hidden"), 5000);
   }
 
   function showError(msg) {
     hideNotification();
-    errorMessage.textContent =
-      msg || "Ha ocurrido un error. Inténtelo nuevamente.";
+    errorMessage.textContent = msg || "Ha ocurrido un error. Inténtelo nuevamente.";
     errorNotification.classList.remove("hidden");
   }
 
-  // ------------- Envío del formulario a Firebase Realtime Database -------------
+  // ------------- Envío del formulario a Firebase -------------
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    // Validar que se haya seleccionado un nombre del buscador
+    const nombreHidden = document.getElementById("nombre");
+    if (!nombreHidden.value) {
+      const searchInput = document.getElementById("nombreSearch");
+      searchInput.classList.add("input-error");
+      searchInput.focus();
+      searchInput.setAttribute("title", "Seleccione un nombre de la lista");
+      return;
+    }
 
     if (!form.checkValidity()) {
       form.reportValidity();
@@ -146,64 +140,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
     showLoading();
 
-    const formData = {
-      fecha: form.fecha.value,
-      lugarSalida: form.lugarSalida.value,
-      actividad: form.actividad.value,
-      lugarActividad: form.lugarActividad.value,
-      horaSalida: form.horaSalida.value,
-      horaLlegada: form.horaLlegada.value,
-      horaRetorno: form.horaRetorno.value,
-      programada: form.programada.value,
-      reunionCon: form.reunionCon.value,
-      otroReunion: form.otroReunion.value || "",
-      nombre: form.nombre.value,
-      cedula: form.cedula.value,
-      perfil: form.perfil.value,
-      telefono: form.telefono.value,
-      telContacto: form.telContacto.value,
-      carne: form.carne.value,
-      transporte: form.transporte.value,
-      placa: form.placa.value || "",
-    };
-    const ordenCampos = [
-      "fecha",
-      "nombre",
-      "cedula",
-      "perfil",
-      "telefono",
-      "telContacto",
-      "carne",
-      "actividad",
-      "programada",
-      "lugarSalida",
-      "lugarActividad",
-      "horaSalida",
-      "horaLlegada",
-      "horaRetorno",
-      "reunionCon",
-      "otroReunion",
-      "transporte",
-      "placa",
-    ];
+    const fechaActual = new Date(form.fecha.value);
+    const fechaISO    = fechaActual.toISOString();
 
-    console.log("---- Registro ordenado ----");
-    ordenCampos.forEach((campo) => {
-      console.log(`${campo}: ${formData[campo] || ""}`);
-    });
+    const formData = {
+      fecha:          form.fecha.value,
+      fechaISO:       fechaISO,
+      lugarSalida:    form.lugarSalida.value,
+      actividad:      form.actividad.value,
+      lugarActividad: form.lugarActividad.value,
+      horaSalida:     form.horaSalida.value,
+      horaLlegada:    form.horaLlegada.value,
+      horaRetorno:    form.horaRetorno.value,
+      programada:     form.programada.value,
+      reunionCon:     form.reunionCon.value,
+      otroReunion:    form.otroReunion.value || "",
+      nombre:         nombreHidden.value,
+      cedula:         cedulaInput.value,
+      perfil:         perfilInput.value,
+      telefono:       telefonoInput.value,
+      telContacto:    form.telContacto.value,
+      carne:          form.carne.value,
+      transporte:     form.transporte.value,
+      placa:          form.placa ? form.placa.value || "" : "",
+    };
 
     // Referencia a Firebase Realtime Database
     const dbRef = firebase.database().ref("formularios/salidas");
 
-    // Push datos
-    dbRef
-      .push(formData)
+    dbRef.push(formData)
       .then(() => {
         showSuccess();
         form.reset();
-        cedulaInput.value = "";
-        perfilInput.value = "";
+
+        // Limpiar campos readonly
+        cedulaInput.value   = "";
+        perfilInput.value   = "";
         telefonoInput.value = "";
+
+        // Limpiar searchable select
+        const searchInput = document.getElementById("nombreSearch");
+        const hiddenInput = document.getElementById("nombre");
+        if (searchInput) {
+          searchInput.value = "";
+          searchInput.classList.remove("has-value", "input-error");
+        }
+        if (hiddenInput) hiddenInput.value = "";
+
         otroReunionGroup.classList.add("hidden");
         placaGroup.classList.add("hidden");
       })
@@ -211,4 +194,5 @@ document.addEventListener("DOMContentLoaded", () => {
         showError(error.message);
       });
   });
+
 });
