@@ -1,3 +1,7 @@
+// main.js
+// NOTA: Este archivo ya NO usa type="module" — se carga como script normal
+// para poder acceder al array global `personas` definido en personas.js
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // ------------- Referencias al DOM -------------
