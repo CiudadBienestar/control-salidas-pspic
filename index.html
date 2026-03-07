@@ -9,13 +9,154 @@
       href="https://ciudadbienestar.github.io/control-salidas-pspic/pasto%20salud.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="css/stYLES.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <style>
+      /* ===== SEARCHABLE SELECT ===== */
+      .searchable-select {
+        position: relative;
+      }
+
+      .searchable-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        background: var(--surface-color);
+        color: var(--text-primary);
+      }
+
+      .searchable-input:focus {
+        outline: none;
+        border-color: var(--border-focus);
+        box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .searchable-input.has-value {
+        border-color: var(--success-color);
+      }
+
+      .searchable-input.input-error {
+        border-color: var(--error-color);
+        box-shadow: 0 0 0 3px rgba(215, 38, 56, 0.1);
+      }
+
+      .searchable-dropdown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: white;
+        border: 2px solid var(--border-focus);
+        border-radius: var(--radius-md);
+        max-height: 220px;
+        overflow-y: auto;
+        z-index: 999;
+        box-shadow: var(--shadow-lg);
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-color) transparent;
+      }
+
+      .searchable-dropdown::-webkit-scrollbar {
+        width: 6px;
+      }
+      .searchable-dropdown::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .searchable-dropdown::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 3px;
+      }
+
+      .searchable-dropdown.open {
+        display: block;
+        animation: dropdownOpen 0.15s ease-out;
+      }
+
+      @keyframes dropdownOpen {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown-item {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-family: inherit;
+        color: var(--text-primary);
+        transition: background 0.12s ease, color 0.12s ease;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item.highlighted {
+        background: linear-gradient(135deg, rgba(46,134,171,0.08), rgba(46,134,171,0.04));
+        color: var(--primary-dark);
+        padding-left: 1.25rem;
+      }
+
+      .dropdown-item.no-results {
+        color: var(--text-secondary);
+        cursor: default;
+        font-style: italic;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .dropdown-item.no-results:hover {
+        background: none;
+        color: var(--text-secondary);
+        padding-left: 1rem;
+      }
+
+      /* Resaltar texto coincidente */
+      .dropdown-item mark {
+        background: rgba(241, 143, 1, 0.25);
+        color: var(--primary-dark);
+        border-radius: 2px;
+        padding: 0 1px;
+        font-weight: 600;
+      }
+
+      /* Ícono de flecha en el input */
+      .searchable-select::after {
+        content: "▾";
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+        pointer-events: none;
+        font-size: 0.85rem;
+        transition: transform 0.2s ease;
+      }
+
+      .searchable-select.open::after {
+        transform: translateY(-50%) rotate(180deg);
+        color: var(--primary-color);
+      }
+    </style>
   </head>
   <body>
     <!-- Loading overlay -->
@@ -45,6 +186,7 @@
         </div>
       </div>
     </div>
+
     <header class="header">
       <a
         href="http://ciudadbienestar.github.io/control-salidas-pspic/registros.html"
@@ -84,12 +226,13 @@
     <main class="main-container">
       <div class="form-container">
         <form id="salidaForm" class="modern-form" novalidate>
+
           <!-- Información básica -->
           <section class="form-section">
             <h2>📋 Información Básica</h2>
             <div class="form-grid">
               <div class="form-group">
-                <label for="fecha">Fecha de la Actividad</label>
+                <label for="fecha">Fecha</label>
                 <input type="date" id="fecha" name="fecha" required />
               </div>
               <div class="form-group">
@@ -118,9 +261,7 @@
               ></textarea>
             </div>
             <div class="form-group">
-              <label for="lugarActividad"
-                >Lugar donde se Realizará la Actividad</label
-              >
+              <label for="lugarActividad">Lugar donde se Realizará la Actividad</label>
               <input
                 type="text"
                 id="lugarActividad"
@@ -136,15 +277,13 @@
             <h2>⏰ Horarios</h2>
             <div class="form-grid">
               <div class="form-group">
-                <label for="horaSalida">Hora de salida</label>
+                <label for="horaSalida">Hora lugar de salida</label>
                 <select id="horaSalida" name="horaSalida" required>
                   <option value="">Seleccione hora</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="horaLlegada"
-                  >Presunta Hora de Llegada (Destino)</label
-                >
+                <label for="horaLlegada">Presunta Hora de Llegada (Destino)</label>
                 <select id="horaLlegada" name="horaLlegada" required>
                   <option value="">Seleccione hora</option>
                 </select>
@@ -176,13 +315,11 @@
                   <option value="">Seleccione</option>
                   <option value="Comité">Comité</option>
                   <option value="Corregidor(a)">Corregidor(a)</option>
-                  <option value="Comunidad en general">
-                    Comunidad en general
-                  </option>
-                  <option value="Docente(s)">Docente(s)</option>
+                  <option value="Comunidad en general">Comunidad en general</option>
+                  <option value="Docente">Docente</option>
                   <option value="Equipo de trabajo">Equipo de trabajo</option>
                   <option value="Estudiantes">Estudiantes</option>
-                  <option value="Líderes o lideresas">Líderes o lideresas</option>
+                  <option value="Líderes o lideresas">Líder o lideresa</option>
                   <option value="Referente SMS">Referente SMS</option>
                   <option value="Veedores(as)">Veedor(a)</option>
                   <option value="Otro">Otro</option>
@@ -203,12 +340,24 @@
           <!-- Información personal -->
           <section class="form-section">
             <h2>👤 Información Personal</h2>
+
+            <!-- Searchable select para nombre -->
             <div class="form-group">
-              <label for="nombre">Nombre Completo</label>
-              <select id="nombre" name="nombre" required>
-                <option value="">Seleccione su nombre</option>
-              </select>
+              <label for="nombreSearch">Nombre Completo</label>
+              <div class="searchable-select" id="nombreSelectWrapper">
+                <input
+                  type="text"
+                  id="nombreSearch"
+                  autocomplete="off"
+                  placeholder="Escriba para buscar su nombre..."
+                  class="searchable-input"
+                />
+                <!-- Campo oculto que guarda el valor real para el formulario -->
+                <input type="hidden" id="nombre" name="nombre" required />
+                <div class="searchable-dropdown" id="nombreDropdown"></div>
+              </div>
             </div>
+
             <div class="form-grid">
               <div class="form-group">
                 <label for="cedula">Cédula</label>
@@ -274,12 +423,8 @@
                   <option value="Caminando">Caminando</option>
                   <option value="Motocicleta">Motocicleta</option>
                   <option value="Transporte público">Transporte público</option>
-                  <option value="Vehículo institucional">
-                    Vehículo institucional
-                  </option>
-                  <option value="Vehículo particular">
-                    Vehículo particular
-                  </option>
+                  <option value="Vehículo institucional">Vehículo institucional</option>
+                  <option value="Vehículo particular">Vehículo particular</option>
                 </select>
               </div>
             </div>
@@ -312,29 +457,173 @@
       <div class="footer-logo-container"></div>
       <p>&copy; 2025 PSPIC - Sistema de Control de Salidas</p>
     </footer>
-    <!-- SDK Firebase versión clásica (compat) para uso con JS externo sin módulos) -->
+
+    <!-- SDK Firebase versión clásica (compat) -->
     <script src="https://www.gstatic.com/firebasejs/11.8.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.8.1/firebase-database-compat.js"></script>
 
-    <!-- Tu configuración de Firebase -->
+    <!-- Configuración de Firebase -->
     <script>
       const firebaseConfig = {
         apiKey: "AIzaSyAQEfqhQeW-ey01e16m9yXHaIsgg384iz8",
         authDomain: "registro-salidas-1002b.firebaseapp.com",
-        databaseURL:
-          "https://registro-salidas-1002b-default-rtdb.firebaseio.com",
+        databaseURL: "https://registro-salidas-1002b-default-rtdb.firebaseio.com",
         projectId: "registro-salidas-1002b",
         storageBucket: "registro-salidas-1002b.firebasestorage.app",
         messagingSenderId: "987187969959",
         appId: "1:987187969959:web:03164b91bea644959c4082",
       };
-
-      // Inicializar Firebase
       firebase.initializeApp(firebaseConfig);
     </script>
 
-    <!--JS externo -->
-    <script src="./JS/main.js" type="module"></script>
-    <script src="./JS/personas.js"></script>
+    <!-- Lógica del searchable select -->
+    <script>
+      /**
+       * initSearchableSelect(personas)
+       * Llama esta función después de cargar el array de personas
+       * desde personas.js o Firebase.
+       *
+       * Cada elemento del array debe tener la forma:
+       * { nombre: "Juan Pérez", cedula: "123456", perfil: "Psicólogo", telefono: "3001234567" }
+       */
+      window.initSearchableSelect = function (personas) {
+        const searchInput  = document.getElementById("nombreSearch");
+        const hiddenInput  = document.getElementById("nombre");
+        const dropdown     = document.getElementById("nombreDropdown");
+        const wrapper      = document.getElementById("nombreSelectWrapper");
+
+        // Resalta la parte del texto que coincide con el filtro
+        function highlight(text, query) {
+          if (!query) return text;
+          const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          return text.replace(
+            new RegExp(`(${escaped})`, "gi"),
+            "<mark>$1</mark>"
+          );
+        }
+
+        function renderOptions(filter) {
+          const q = (filter || "").trim().toLowerCase();
+          const filtered = personas.filter((p) =>
+            p.nombre.toLowerCase().includes(q)
+          );
+
+          dropdown.innerHTML = "";
+
+          if (filtered.length === 0) {
+            dropdown.innerHTML =
+              '<div class="dropdown-item no-results">Sin resultados</div>';
+            return;
+          }
+
+          filtered.forEach((p) => {
+            const item = document.createElement("div");
+            item.className = "dropdown-item";
+            item.innerHTML = highlight(p.nombre, filter);
+
+            item.addEventListener("mousedown", (e) => {
+              e.preventDefault(); // Evita que el blur cierre el dropdown antes del click
+              searchInput.value  = p.nombre;
+              hiddenInput.value  = p.nombre;
+              searchInput.classList.add("has-value");
+              searchInput.classList.remove("input-error");
+              dropdown.classList.remove("open");
+              wrapper.classList.remove("open");
+
+              // Autocompletar campos readonly
+              document.getElementById("cedula").value   = p.cedula   || "";
+              document.getElementById("perfil").value   = p.perfil   || "";
+              document.getElementById("telefono").value = p.telefono || "";
+
+              searchInput.dispatchEvent(new Event("change"));
+            });
+
+            dropdown.appendChild(item);
+          });
+        }
+
+        // Abrir al hacer foco
+        searchInput.addEventListener("focus", () => {
+          renderOptions(searchInput.value);
+          dropdown.classList.add("open");
+          wrapper.classList.add("open");
+        });
+
+        // Filtrar mientras escribe
+        searchInput.addEventListener("input", () => {
+          hiddenInput.value = ""; // Limpia selección si edita manualmente
+          searchInput.classList.remove("has-value");
+          renderOptions(searchInput.value);
+          dropdown.classList.add("open");
+          wrapper.classList.add("open");
+        });
+
+        // Cerrar al perder foco
+        searchInput.addEventListener("blur", () => {
+          setTimeout(() => {
+            dropdown.classList.remove("open");
+            wrapper.classList.remove("open");
+            // Si el texto no coincide exactamente con ninguna persona, limpiar
+            const match = personas.find(
+              (p) => p.nombre.toLowerCase() === searchInput.value.trim().toLowerCase()
+            );
+            if (!match) {
+              hiddenInput.value = "";
+              searchInput.classList.remove("has-value");
+            }
+          }, 180);
+        });
+
+        // Navegación con teclado (↑ ↓ Enter Escape)
+        searchInput.addEventListener("keydown", (e) => {
+          const items = dropdown.querySelectorAll(".dropdown-item:not(.no-results)");
+          const current = dropdown.querySelector(".dropdown-item.highlighted");
+          let idx = Array.from(items).indexOf(current);
+
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (idx < items.length - 1) idx++;
+            else idx = 0;
+            items.forEach((i) => i.classList.remove("highlighted"));
+            items[idx]?.classList.add("highlighted");
+            items[idx]?.scrollIntoView({ block: "nearest" });
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (idx > 0) idx--;
+            else idx = items.length - 1;
+            items.forEach((i) => i.classList.remove("highlighted"));
+            items[idx]?.classList.add("highlighted");
+            items[idx]?.scrollIntoView({ block: "nearest" });
+          } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (current) current.dispatchEvent(new MouseEvent("mousedown"));
+          } else if (e.key === "Escape") {
+            dropdown.classList.remove("open");
+            wrapper.classList.remove("open");
+            searchInput.blur();
+          }
+        });
+      };
+
+      // Limpiar el campo nombre al resetear el formulario
+      document.addEventListener("DOMContentLoaded", () => {
+        const resetBtn = document.getElementById("resetBtn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            const searchInput = document.getElementById("nombreSearch");
+            const hiddenInput = document.getElementById("nombre");
+            if (searchInput) {
+              searchInput.value = "";
+              searchInput.classList.remove("has-value", "input-error");
+            }
+            if (hiddenInput) hiddenInput.value = "";
+          });
+        }
+      });
+    </script>
+
+    <!-- JS externo (debe llamar window.initSearchableSelect(personas) al cargar las personas) -->
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/personas.js"></script>
   </body>
 </html>
