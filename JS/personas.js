@@ -76,3 +76,17 @@ const personas = [
 { nombre:"Zulma Victoria Zambrano Segura", cedula:"27359486", perfil:"Geógrafa", telefono:"3012502691"}
 
 ];
+
+// Inicializar el buscador de nombres una vez que el DOM esté listo
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof window.initSearchableSelect === "function") {
+      window.initSearchableSelect(personas);
+    }
+  });
+} else {
+  // DOM ya estaba listo
+  if (typeof window.initSearchableSelect === "function") {
+    window.initSearchableSelect(personas);
+  }
+}
