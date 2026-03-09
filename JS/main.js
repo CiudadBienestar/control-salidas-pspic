@@ -1,7 +1,3 @@
-// main.js
-// NOTA: Este archivo ya NO usa type="module" — se carga como script normal
-// para poder acceder al array global `personas` definido en personas.js
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // ------------- Referencias al DOM -------------
@@ -144,8 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     showLoading();
 
-    const fechaActual = new Date(form.fecha.value);
-    const fechaISO    = fechaActual.toISOString();
+    const fechaISO    = form.fecha.value; // formato YYYY-MM-DD, sin conversión UTC
 
     const formData = {
       fecha:          form.fecha.value,
