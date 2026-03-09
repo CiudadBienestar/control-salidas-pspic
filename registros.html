@@ -737,9 +737,10 @@
       function formatearFecha(fecha) {
         if (!fecha) return "";
 
-        // Si es formato ISO (YYYY-MM-DD)
+        // Si es formato ISO (YYYY-MM-DDTHH:mm:ss.sssZ o YYYY-MM-DD)
         if (typeof fecha === "string" && fecha.includes("-")) {
-          const [year, month, day] = fecha.split("-");
+          const soloFecha = fecha.includes("T") ? fecha.split("T")[0] : fecha;
+          const [year, month, day] = soloFecha.split("-");
           return `${day}/${month}/${year}`;
         }
 
