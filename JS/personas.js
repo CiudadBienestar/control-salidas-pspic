@@ -33,7 +33,7 @@ const personas = [
   { nombre:"Gloria Amparo Riascos Alvarado", cedula:"36952808", perfil:"Tecnóloga en promoción de la salud", telefono:"3173159712"},
   { nombre:"Guissett Fernanda Jiménez Romero", cedula:"1085270920", perfil:"Socióloga", telefono:"3155761683"},
   { nombre:"Ivan Camilo Ladino Parra", cedula:"1018514862", perfil:"Sociólogo", telefono:"3229031210"},
-  { nombre:"Jefeson Fabian Salazar Duarte", cedula:"1085339919", perfil:"Sociólogo", telefono:"3164054809"},
+  { nombre:"Jeferson Fabián Salazar Duarte", cedula:"1085339919", perfil:"Sociólogo", telefono:"3164054809"},
   { nombre:"Johana Andrea Rosas Tonguino", cedula:"1233192289", perfil:"Tecnóloga en promoción de la salud", telefono:"3145407706"},
   { nombre:"John Edisson Bravo Botina", cedula:"1085279124", perfil:"Tecnólogo en promoción de la salud", telefono:"3015332010"},
   { nombre:"Juan Carlos Prado Benavides", cedula:"1085250756", perfil:"Diseñador gráfico", telefono:"3152222145"},
