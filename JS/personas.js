@@ -22,6 +22,7 @@ const personas = [
   { nombre:"Diana Camila López Bucheli", cedula:"1085284022", perfil:"Psicóloga", telefono:"3153755907"},
   { nombre:"Diana Marcela Melo Eraso", cedula:"1233188873", perfil:"Psicóloga", telefono:"3176535477"},
   { nombre:"Diego Alejandro Córdoba Rosero", cedula:"1085287990", perfil:"Diseñador gráfico", telefono:"3137451522"},
+  { nombre:"Diego Armando Benavides Obando", cedula:"1085310456", perfil:"Licenciado en artes visuales", telefono:"3127833153"},
   { nombre:"Elizabeth Natalia Huertas Moreno", cedula:"36754932", perfil:"Tecnóloga en promoción de la salud", telefono:"3113786634"},
   { nombre:"Esteban Francisco Pérez Portilla", cedula:"98399579", perfil:"Licenciado en artes visuales", telefono:"3187276358"},
   { nombre:"Estefany Sofía Munares Ceballos", cedula:"1193271904", perfil:"Profesional en administración de servicios de salud", telefono:"3157023947"},
@@ -33,7 +34,9 @@ const personas = [
   { nombre:"Gloria Amparo Riascos Alvarado", cedula:"36952808", perfil:"Tecnóloga en promoción de la salud", telefono:"3173159712"},
   { nombre:"Guissett Fernanda Jiménez Romero", cedula:"1085270920", perfil:"Socióloga", telefono:"3155761683"},
   { nombre:"Ivan Camilo Ladino Parra", cedula:"1018514862", perfil:"Sociólogo", telefono:"3229031210"},
-  { nombre:"Jeferson Fabián Salazar Duarte", cedula:"1085339919", perfil:"Sociólogo", telefono:"3164054809"},
+  { nombre:"Jeferson Fabian Salazar Duarte", cedula:"1085339919", perfil:"Sociólogo", telefono:"3164054809"},
+  { nombre:"Jennifer Katerine Guerrero Belalcazar", cedula:"1089479893", perfil:"fisioterapeuta", telefono:"3106304109"},
+  { nombre:"Jessica Fernanda Lagos David", cedula:"1004135064", perfil:"Tecnóloga en promoción de la salud", telefono:"3003565835"},
   { nombre:"Johana Andrea Rosas Tonguino", cedula:"1233192289", perfil:"Tecnóloga en promoción de la salud", telefono:"3145407706"},
   { nombre:"John Edisson Bravo Botina", cedula:"1085279124", perfil:"Tecnólogo en promoción de la salud", telefono:"3015332010"},
   { nombre:"Juan Carlos Prado Benavides", cedula:"1085250756", perfil:"Diseñador gráfico", telefono:"3152222145"},
@@ -72,6 +75,7 @@ const personas = [
   { nombre:"Yanira del Rosario Lopez Basante", cedula:"36757298", perfil:"Tecnóloga en promoción de la salud", telefono:"3153737369"},
   { nombre:"Yesica Stefania Jurado Martínez", cedula:"1085319775", perfil:"Psicóloga", telefono:"3209930297"},
   { nombre:"Yoli Elizabeth Galvis Barrera", cedula:"1085303056", perfil:"Tecnóloga en promoción de la salud", telefono:"3213823317"},
+  { nombre:"Yury Alexandra Bravo García", cedula:"10852328611", perfil:"Psicóloga", telefono:"3178944330"},
   { nombre:"Zulma Victoria Zambrano Segura", cedula:"27359486", perfil:"Geógrafa", telefono:"3012502691"}
 ];
 
