@@ -60,6 +60,7 @@ const personas = [
   { nombre:"Natalia Catalina Benitez Yepez", cedula:"1018428049", perfil:"Comunicadora Social", telefono:"3003793220"},
   { nombre:"Norida Yulieth Tobar Arteaga", cedula:"1004726758", perfil:"Tecnóloga en promoción de la salud", telefono:"3233158303"},
   { nombre:"Paola Andrea Rosero Arenas", cedula:"1085302127", perfil:"Psicóloga", telefono:"3188726597"},
+  { nombre:"Paola Andrea Suesca Buitrago", cedula:"52963413", perfil:"Productora Audiovisual", telefono:"3127217936"},
   { nombre:"Paola Bárcenas Portillo", cedula:"1085284434", perfil:"Psicóloga", telefono:"3186519830"},
   { nombre:"Paula Isabel Monar Canal", cedula:"1085338322", perfil:"Tecnóloga en promoción de la salud", telefono:"3182647188"},
   { nombre:"Paulo Alejandro Hernández Lagos", cedula:"1085311191", perfil:"Sociólogo", telefono:"3172508601"},
