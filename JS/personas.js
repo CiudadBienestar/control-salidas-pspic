@@ -24,6 +24,7 @@ const personas = [
   { nombre:"Diego Alejandro Córdoba Rosero", cedula:"1085287990", perfil:"Diseñador gráfico", telefono:"3137451522"},
   { nombre:"Diego Armando Benavides Obando", cedula:"1085310456", perfil:"Licenciado en artes visuales", telefono:"3127833153"},
   { nombre:"Elizabeth Natalia Huertas Moreno", cedula:"36754932", perfil:"Tecnóloga en promoción de la salud", telefono:"3113786634"},
+  { nombre:"Enrique Armando Cabrera Jurado", cedula:"12981279", perfil:"Licenciado en Artes", telefono:"3002756212"},
   { nombre:"Esteban Francisco Pérez Portilla", cedula:"98399579", perfil:"Licenciado en artes visuales", telefono:"3187276358"},
   { nombre:"Estefany Sofía Munares Ceballos", cedula:"1193271904", perfil:"Profesional en administración de servicios de salud", telefono:"3157023947"},
   { nombre:"Everth Alexander Benavides Arroyo", cedula:"1004564305", perfil:"Tecnólogo en promoción de la salud", telefono:"3164699605"},
