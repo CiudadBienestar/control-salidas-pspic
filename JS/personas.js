@@ -48,6 +48,7 @@ const personas = [
   { nombre:"Lesly Fabiana Romero Cabrera", cedula:"1004235951", perfil:"Tecnóloga en promoción de la salud", telefono:"3166157750"},
   { nombre:"Lesly Nathalia Maigual Jurado", cedula:"1085337465", perfil:"Tecnóloga en promoción de la salud", telefono:"3145141364"},
   { nombre:"Leydi Vanessa Palacios Delgado", cedula:"1085336859", perfil:"Psicóloga", telefono:"3106867972"},
+  { nombre:"Liceth Paola León Torijano", cedula:"1086137336", perfil:"Psicóloga", telefono:"3126127566"},
   { nombre:"Luis Sebastián Yepes Caicedo", cedula:"1085285463", perfil:"Comunicador Social", telefono:"3126865216"},
   { nombre:"Luz Marina Benavides Bastidas", cedula:"1085330237", perfil:"Tecnólogo en promoción de la salud", telefono:"3135919153"},
   { nombre:"María Alejandra de los Rios Eraso", cedula:"1004131509", perfil:"Terapeuta Ocupacional", telefono:"3126016729"},
