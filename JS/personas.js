@@ -19,7 +19,7 @@ const personas = [
   { nombre:"Daniela Nathali Peñafiel Morán", cedula:"1085303596", perfil:"Diseñadora gráfica", telefono:"3007981182"},
   { nombre:"David Alexander Revelo Yaqueno", cedula:"1085264502", perfil:"Tecnólogo en promoción de la salud", telefono:"3185198565"},
   { nombre:"David Andres Cabrera Vallejos", cedula:"1193292399", perfil:"Tecnólogo en promoción de la salud", telefono:"3173941401"},
-  { nombre:"Diana Camila López Bucheli", cedula:"1085284022", perfil:"Psicóloga", telefono:"3153755907"},
+  { nombre:"Diana Sofía Albornoz Marín", cedula:"1085287262", perfil:"Comunicadora Social", telefono:"3176997324"},
   { nombre:"Diana Marcela Melo Eraso", cedula:"1233188873", perfil:"Psicóloga", telefono:"3176535477"},
   { nombre:"Diego Alejandro Córdoba Rosero", cedula:"1085287990", perfil:"Diseñador gráfico", telefono:"3137451522"},
   { nombre:"Diego Armando Benavides Obando", cedula:"1085310456", perfil:"Licenciado en artes visuales", telefono:"3127833153"},
