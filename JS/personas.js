@@ -4,6 +4,7 @@ const personas = [
   { nombre:"Adriana Sofia Isandara Nupan", cedula:"1193265360", perfil:"Tecnóloga en promoción de la salud", telefono:"3186479077"},
   { nombre:"Alejandra Basante Mora", cedula:"1085312866", perfil:"Profesional en Comunicación Social", telefono:"3113018578"},
   { nombre:"Alex Martin Bastidas Patiño", cedula:"989393970", perfil:"Licenciado en Artes Visuales", telefono:"3188269411"},
+  { nombre:"Alex Ferney Maigual Botina", cedula:"5207190", perfil:"Comunicador Social ", telefono:"3162838654"},
   { nombre:"Alexandra Milena Guerra Rosero", cedula:"1085318152", perfil:"Tecnóloga en promoción de la salud", telefono:"3102068002"},
   { nombre:"Amanda Zoraida Andrade", cedula:"59818886", perfil:"Psicóloga", telefono:"3206662578"},
   { nombre:"Anderson Schneider Vidal Ceballos", cedula:"1085245340", perfil:"Ingeniero Agroforestal", telefono:"3146286462"},
