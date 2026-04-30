@@ -3,6 +3,7 @@ const personas = [
   { nombre:"Adriana Guicella Rivas Burbano", cedula:"59311558", perfil:"Tecnóloga en promoción de la salud", telefono:"3242654545"},
   { nombre:"Adriana Sofia Isandara Nupan", cedula:"1193265360", perfil:"Tecnóloga en promoción de la salud", telefono:"3186479077"},
   { nombre:"Alejandra Basante Mora", cedula:"1085312866", perfil:"Profesional en Comunicación Social", telefono:"3113018578"},
+  { nombre:"Alejandra Isabel Quintana Camayo", cedula:"1062774221", perfil:"Tecnóloga en promoción de la salud", telefono:"3127447172"},
   { nombre:"Alex Martin Bastidas Patiño", cedula:"989393970", perfil:"Licenciado en Artes Visuales", telefono:"3188269411"},
   { nombre:"Alex Ferney Maigual Botina", cedula:"5207190", perfil:"Comunicador Social ", telefono:"3162838654"},
   { nombre:"Alexandra Milena Guerra Rosero", cedula:"1085318152", perfil:"Tecnóloga en promoción de la salud", telefono:"3102068002"},
