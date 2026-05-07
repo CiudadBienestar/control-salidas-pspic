@@ -59,6 +59,7 @@ const personas = [
   { nombre:"Luis Sebastián Yepes Caicedo", cedula:"1085285463", perfil:"Comunicador Social", telefono:"3126865216"},
   { nombre:"Luz Marina Benavides Bastidas", cedula:"1085330237", perfil:"Tecnólogo en promoción de la salud", telefono:"3135919153"},
   { nombre:"María Alejandra de los Rios Eraso", cedula:"1004131509", perfil:"Terapeuta Ocupacional", telefono:"3126016729"},
+  { nombre:"María Fernanda Martínez Arellano", cedula:"1085321868", perfil:"Licenciada en artes visuales", telefono:"3164852323"},
   { nombre:"María Guadalupe Gelpud Carpio", cedula:"1004410787", perfil:"Tecnóloga en promoción de la salud", telefono:"3015426949"},
   { nombre:"María Paula Pachajoa De La Rosa", cedula:"1085339053", perfil:"Tecnóloga en promoción de la salud", telefono:"3012016616"},
   { nombre:"María Sofia España Rosero", cedula:"1085301015", perfil:"Tecnóloga en promoción de la salud", telefono:"3506801369"},
