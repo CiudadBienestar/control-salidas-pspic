@@ -18,6 +18,7 @@ const personas = [
   { nombre:"Claudia Nathali Castro Zambrano", cedula:"1085261901", perfil:"Psicóloga", telefono:"3177580569"},
   { nombre:"Cristina Geraldine Ordoñez Solarte", cedula:"1085335336", perfil:"Tecnóloga en promoción de la salud", telefono:"3167701112"},
   { nombre:"Daneira Maribel Narvaez Melo", cedula:"1086135386", perfil:"Tecnóloga en promoción de la salud", telefono:"3162353709"},
+  { nombre:"Daniela Alejandra Salazar Rincon", cedula:"1233190264", perfil:"Tecnóloga en promoción de la salud", telefono:"3183014740"},
   { nombre:"Daniela Nathali Peñafiel Morán", cedula:"1085303596", perfil:"Diseñadora gráfica", telefono:"3007981182"},
   { nombre:"David Alexander Revelo Yaqueno", cedula:"1085264502", perfil:"Tecnólogo en promoción de la salud", telefono:"3185198565"},
   { nombre:"David Andres Cabrera Vallejos", cedula:"1193292399", perfil:"Tecnólogo en promoción de la salud", telefono:"3173941401"},
